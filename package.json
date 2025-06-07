@@ -1,0 +1,40 @@
+{
+  "name": "mediahand",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "lint": "astro check"
+  },
+  "dependencies": {
+    "@astrojs/node": "^9.2.2",
+    "@astrojs/react": "^4.3.0",
+    "@astrojs/tailwind": "^6.0.2",
+    "@radix-ui/react-slot": "^1.2.0",
+    "@supabase/supabase-js": "^2.49.4",
+    "@tailwindcss/postcss": "^4.1.4",
+    "astro": "^5.9.0",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "next": "^14.2.0",
+    "next-themes": "^0.3.0",
+    "react": "^18",
+    "react-dom": "^18",
+    "tailwind-merge": "^3.2.0",
+    "tailwindcss": "^3.4.4",
+    "tailwindcss-animate": "^1.0.7"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.4",
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "eslint": "^8",
+    "eslint-config-next": "^14.2.0",
+    "typescript": "^5.8.3"
+  }
+}

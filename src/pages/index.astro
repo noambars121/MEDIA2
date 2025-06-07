@@ -1,0 +1,316 @@
+---
+import Layout from '@/layouts/Layout.astro';
+---
+
+<Layout title="MediaHand - Professional Photography Business Management">
+  <div class="min-h-screen bg-black relative">
+    <!-- Minimal grid pattern background -->
+    <div class="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.005)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.005)_1px,transparent_1px)] bg-[size:40px_40px]"></div>
+
+    <!-- Navigation -->
+    <nav class="relative z-10 px-6 py-5 border-b border-white/5">
+      <div class="max-w-7xl mx-auto flex justify-between items-center">
+        <div class="flex items-center space-x-3">
+          <div class="w-8 h-8 bg-white rounded-md flex items-center justify-center">
+            <svg class="w-5 h-5 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+          </div>
+          <span class="text-lg font-medium text-white tracking-tight">MediaHand</span>
+        </div>
+        <div class="flex items-center space-x-6">
+          <a href="/login" class="btn-secondary text-sm">Login</a>
+          <a href="/register" class="btn-primary text-sm">Get Started</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <main class="relative z-10">
+      <div class="max-w-6xl mx-auto px-6 py-32">
+        <div class="text-center max-w-4xl mx-auto">
+          <!-- Hero Badge -->
+          <div class="inline-flex items-center px-4 py-2 rounded-full bg-white/5 border border-white/10 text-gray-300 text-sm font-medium mb-16">
+            Trusted by 1000+ Photography Professionals
+          </div>
+
+          <!-- Hero Title -->
+          <h1 class="text-6xl md:text-7xl lg:text-8xl font-bold text-white mb-12 tracking-tight leading-none">
+            Photography
+            <span class="block text-gray-300 font-normal">Business Management</span>
+            <span class="block text-4xl md:text-5xl lg:text-6xl font-light mt-4 text-gray-400">Simplified</span>
+          </h1>
+
+          <!-- Hero Subtitle -->
+          <p class="text-xl text-gray-400 mb-20 max-w-2xl mx-auto leading-relaxed font-light">
+            Professional tools for client management, project tracking, and portfolio organization. 
+            Built for serious photographers.
+          </p>
+
+          <!-- CTA Buttons -->
+          <div class="flex flex-col sm:flex-row gap-6 justify-center mb-24">
+            <a href="/register" class="btn-primary text-base px-10 py-5 font-medium">
+              Start Free Trial
+            </a>
+            <a href="/demo" class="btn-secondary text-base px-10 py-5 font-medium">
+              View Demo
+            </a>
+          </div>
+
+          <!-- Social Proof Stats -->
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-16 max-w-3xl mx-auto">
+            <div class="text-center">
+              <div class="text-3xl font-semibold text-white mb-2 tracking-tight">1,000+</div>
+              <div class="text-gray-500 text-sm font-medium uppercase tracking-wider">Active Users</div>
+            </div>
+            <div class="text-center">
+              <div class="text-3xl font-semibold text-white mb-2 tracking-tight">50K+</div>
+              <div class="text-gray-500 text-sm font-medium uppercase tracking-wider">Projects</div>
+            </div>
+            <div class="text-center">
+              <div class="text-3xl font-semibold text-white mb-2 tracking-tight">99.9%</div>
+              <div class="text-gray-500 text-sm font-medium uppercase tracking-wider">Uptime</div>
+            </div>
+            <div class="text-center">
+              <div class="text-3xl font-semibold text-white mb-2 tracking-tight">4.9/5</div>
+              <div class="text-gray-500 text-sm font-medium uppercase tracking-wider">Rating</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Features Section -->
+      <div class="max-w-6xl mx-auto px-6 py-32">
+        <div class="text-center mb-24">
+          <h2 class="text-4xl font-semibold text-white mb-6 tracking-tight">
+            Everything you need to run your business
+          </h2>
+          <p class="text-xl text-gray-400 max-w-xl mx-auto font-light">
+            Professional tools designed for photography businesses
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Client Management -->
+          <div class="card p-10">
+            <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center mb-8">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-white mb-4 tracking-tight">Client Management</h3>
+            <p class="text-gray-400 leading-relaxed font-light">
+              Organize client information, track communication history, and manage relationships with professional CRM tools.
+            </p>
+          </div>
+
+          <!-- Project Tracking -->
+          <div class="card p-10">
+            <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center mb-8">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-white mb-4 tracking-tight">Project Tracking</h3>
+            <p class="text-gray-400 leading-relaxed font-light">
+              Monitor project progress, set milestones, track deadlines, and ensure every shoot is delivered on time.
+            </p>
+          </div>
+
+          <!-- Portfolio Management -->
+          <div class="card p-10">
+            <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center mb-8">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-white mb-4 tracking-tight">Portfolio Management</h3>
+            <p class="text-gray-400 leading-relaxed font-light">
+              Organize your work, create client galleries, and showcase your portfolio with professional presentation tools.
+            </p>
+          </div>
+
+          <!-- Business Analytics -->
+          <div class="card p-10">
+            <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center mb-8">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-white mb-4 tracking-tight">Business Analytics</h3>
+            <p class="text-gray-400 leading-relaxed font-light">
+              Track business performance with detailed analytics, revenue insights, and growth metrics.
+            </p>
+          </div>
+
+          <!-- Streamlined Workflows -->
+          <div class="card p-10">
+            <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center mb-8">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-white mb-4 tracking-tight">Streamlined Workflows</h3>
+            <p class="text-gray-400 leading-relaxed font-light">
+              Automate repetitive tasks from client onboarding to invoice generation and follow-ups.
+            </p>
+          </div>
+
+          <!-- Professional Support -->
+          <div class="card p-10">
+            <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center mb-8">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192L5.636 18.364M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-white mb-4 tracking-tight">Professional Support</h3>
+            <p class="text-gray-400 leading-relaxed font-light">
+              Access expert help with dedicated support and comprehensive documentation.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Testimonials Section -->
+      <div class="max-w-6xl mx-auto px-6 py-32">
+        <div class="text-center mb-24">
+          <h2 class="text-4xl font-semibold text-white mb-6 tracking-tight">
+            Trusted by Photography Professionals
+          </h2>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+          <div class="card p-10">
+            <p class="text-gray-300 mb-8 leading-relaxed text-lg font-light">
+              "MediaHand transformed my photography business. I can now focus on what I love most - 
+              taking great photos - while the platform handles all the business management."
+            </p>
+            <div class="flex items-center">
+              <div class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center mr-4">
+                <span class="text-white text-sm font-medium">SM</span>
+              </div>
+              <div>
+                <div class="text-white font-medium tracking-tight">Sarah Mitchell</div>
+                <div class="text-gray-500 text-sm">Wedding Photographer</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card p-10">
+            <p class="text-gray-300 mb-8 leading-relaxed text-lg font-light">
+              "The client management and project tracking features are game-changers. 
+              I've increased my productivity by 40% since switching to MediaHand."
+            </p>
+            <div class="flex items-center">
+              <div class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center mr-4">
+                <span class="text-white text-sm font-medium">MJ</span>
+              </div>
+              <div>
+                <div class="text-white font-medium tracking-tight">Marcus Johnson</div>
+                <div class="text-gray-500 text-sm">Portrait Photographer</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card p-10">
+            <p class="text-gray-300 mb-8 leading-relaxed text-lg font-light">
+              "Professional, reliable, and intuitive. MediaHand has everything I need to 
+              run my photography studio efficiently. Highly recommended."
+            </p>
+            <div class="flex items-center">
+              <div class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center mr-4">
+                <span class="text-white text-sm font-medium">EL</span>
+              </div>
+              <div>
+                <div class="text-white font-medium tracking-tight">Emma Lopez</div>
+                <div class="text-gray-500 text-sm">Commercial Photographer</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CTA Section -->
+      <div class="max-w-4xl mx-auto px-6 py-32 text-center">
+        <div class="card p-16">
+          <h2 class="text-4xl font-semibold text-white mb-8 tracking-tight">
+            Ready to Transform Your Photography Business?
+          </h2>
+          <p class="text-xl text-gray-400 mb-12 max-w-xl mx-auto font-light">
+            Join thousands of professional photographers who trust MediaHand 
+            to manage and grow their businesses.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-6 justify-center">
+            <a href="/register" class="btn-primary text-base px-10 py-5">
+              Start 14-Day Free Trial
+            </a>
+            <a href="/demo" class="btn-secondary text-base px-10 py-5">
+              Schedule Demo
+            </a>
+          </div>
+          <p class="text-gray-600 text-sm mt-8 font-light">
+            No credit card required • Cancel anytime • 14-day money-back guarantee
+          </p>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/5">
+      <div class="max-w-6xl mx-auto px-6 py-16">
+        <div class="grid md:grid-cols-4 gap-12">
+          <div>
+            <div class="flex items-center space-x-3 mb-6">
+              <div class="w-8 h-8 bg-white rounded-md flex items-center justify-center">
+                <svg class="w-5 h-5 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+              </div>
+              <span class="text-lg font-medium text-white tracking-tight">MediaHand</span>
+            </div>
+            <p class="text-gray-400 text-sm leading-relaxed font-light">
+              Professional photography business management platform.
+            </p>
+          </div>
+          
+          <div>
+            <h3 class="text-white font-medium mb-6 tracking-tight">Product</h3>
+            <ul class="space-y-3">
+              <li><a href="/features" class="text-gray-400 hover:text-white text-sm transition-colors font-light">Features</a></li>
+              <li><a href="/pricing" class="text-gray-400 hover:text-white text-sm transition-colors font-light">Pricing</a></li>
+              <li><a href="/demo" class="text-gray-400 hover:text-white text-sm transition-colors font-light">Demo</a></li>
+            </ul>
+          </div>
+          
+          <div>
+            <h3 class="text-white font-medium mb-6 tracking-tight">Support</h3>
+            <ul class="space-y-3">
+              <li><a href="/help" class="text-gray-400 hover:text-white text-sm transition-colors font-light">Help Center</a></li>
+              <li><a href="/contact" class="text-gray-400 hover:text-white text-sm transition-colors font-light">Contact</a></li>
+              <li><a href="/status" class="text-gray-400 hover:text-white text-sm transition-colors font-light">Status</a></li>
+            </ul>
+          </div>
+          
+          <div>
+            <h3 class="text-white font-medium mb-6 tracking-tight">Company</h3>
+            <ul class="space-y-3">
+              <li><a href="/about" class="text-gray-400 hover:text-white text-sm transition-colors font-light">About</a></li>
+              <li><a href="/careers" class="text-gray-400 hover:text-white text-sm transition-colors font-light">Careers</a></li>
+              <li><a href="/legal" class="text-gray-400 hover:text-white text-sm transition-colors font-light">Legal</a></li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="border-t border-white/5 mt-16 pt-8 flex flex-col md:flex-row justify-between items-center">
+          <p class="text-gray-500 text-sm font-light">© 2024 MediaHand. All rights reserved.</p>
+          <div class="flex space-x-8 mt-4 md:mt-0">
+            <a href="/privacy" class="text-gray-500 hover:text-gray-400 text-sm transition-colors font-light">Privacy</a>
+            <a href="/terms" class="text-gray-500 hover:text-gray-400 text-sm transition-colors font-light">Terms</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+</Layout> 

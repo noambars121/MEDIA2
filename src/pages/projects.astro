@@ -1,0 +1,543 @@
+---
+import Layout from '@/layouts/Layout.astro';
+---
+
+<Layout title="Projects - MediaHand">
+  <div class="min-h-screen bg-black">
+    <!-- Minimal grid pattern background -->
+    <div class="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.005)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.005)_1px,transparent_1px)] bg-[size:40px_40px]"></div>
+
+    <!-- Navigation -->
+    <nav class="relative z-10 px-6 py-5 border-b border-white/5">
+      <div class="max-w-7xl mx-auto flex justify-between items-center">
+        <div class="flex items-center space-x-8">
+          <div class="flex items-center space-x-3">
+            <div class="w-8 h-8 bg-white rounded-md flex items-center justify-center">
+              <svg class="w-5 h-5 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+            </div>
+            <span class="text-lg font-medium text-white tracking-tight">MediaHand</span>
+          </div>
+          
+          <div class="hidden md:flex space-x-8">
+            <a href="/dashboard" class="nav-link">Dashboard</a>
+            <a href="/clients" class="nav-link">Clients</a>
+            <a href="/projects" class="nav-link active">Projects</a>
+            <a href="/media" class="nav-link">Media</a>
+            <a href="/analytics" class="nav-link">Analytics</a>
+          </div>
+        </div>
+        
+        <div class="flex items-center space-x-4">
+          <button class="p-2 hover:bg-white/5 rounded-lg transition-colors">
+            <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-5 5v-5z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17H4l5 5v-5z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 3H3v8h18V3z" />
+            </svg>
+          </button>
+          <button class="p-2 hover:bg-white/5 rounded-lg transition-colors">
+            <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+          </button>
+          <div class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center">
+            <span class="text-white text-sm font-medium">JP</span>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="relative z-10 max-w-7xl mx-auto px-6 py-10">
+      <!-- Page Header -->
+      <div class="flex flex-col md:flex-row md:items-center justify-between mb-12">
+        <div>
+          <h1 class="text-3xl font-semibold text-white mb-3 tracking-tight">Project Management</h1>
+          <p class="text-gray-400 font-light">Organize and track your photography projects</p>
+        </div>
+        <button onclick="openAddProjectModal()" class="btn-primary mt-6 md:mt-0 flex items-center space-x-2">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+          </svg>
+          <span>New Project</span>
+        </button>
+      </div>
+
+      <!-- Project Status Overview -->
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 mb-12">
+        <div class="card p-6">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xs font-medium text-gray-400 uppercase tracking-wider">Active</h3>
+            <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <div class="text-3xl font-semibold text-white mb-1 tracking-tight">12</div>
+          <div class="text-xs text-gray-400 font-light">Projects in progress</div>
+        </div>
+
+        <div class="card p-6">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xs font-medium text-gray-400 uppercase tracking-wider">Pending</h3>
+            <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <div class="text-3xl font-semibold text-white mb-1 tracking-tight">8</div>
+          <div class="text-xs text-gray-400 font-light">Awaiting approval</div>
+        </div>
+
+        <div class="card p-6">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xs font-medium text-gray-400 uppercase tracking-wider">Review</h3>
+            <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+            </svg>
+          </div>
+          <div class="text-3xl font-semibold text-white mb-1 tracking-tight">5</div>
+          <div class="text-xs text-gray-400 font-light">Under review</div>
+        </div>
+
+        <div class="card p-6">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xs font-medium text-gray-400 uppercase tracking-wider">Completed</h3>
+            <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 13l4 4L19 7" />
+            </svg>
+          </div>
+          <div class="text-3xl font-semibold text-white mb-1 tracking-tight">28</div>
+          <div class="text-xs text-gray-400 font-light">Successfully delivered</div>
+        </div>
+
+        <div class="card p-6">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xs font-medium text-gray-400 uppercase tracking-wider">Total Value</h3>
+            <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
+            </svg>
+          </div>
+          <div class="text-3xl font-semibold text-white mb-1 tracking-tight">$185K</div>
+          <div class="text-xs text-gray-400 font-light">Combined project value</div>
+        </div>
+      </div>
+
+      <!-- Filters and Search -->
+      <div class="card p-8 mb-10">
+        <div class="flex flex-col lg:flex-row gap-6">
+          <div class="flex-1">
+            <div class="relative">
+              <svg class="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+              <input 
+                type="text" 
+                placeholder="Search projects by name, client, or type..." 
+                class="input-primary pl-12"
+                id="search-input"
+              />
+            </div>
+          </div>
+          <div class="flex gap-4">
+            <select class="input-primary" id="status-filter">
+              <option value="">All Status</option>
+              <option value="active">Active</option>
+              <option value="pending">Pending</option>
+              <option value="review">Review</option>
+              <option value="completed">Completed</option>
+            </select>
+            <select class="input-primary" id="type-filter">
+              <option value="">All Types</option>
+              <option value="wedding">Wedding</option>
+              <option value="corporate">Corporate</option>
+              <option value="portrait">Portrait</option>
+              <option value="event">Event</option>
+              <option value="product">Product</option>
+            </select>
+            <select class="input-primary" id="sort-filter">
+              <option value="date">Sort by Date</option>
+              <option value="name">Sort by Name</option>
+              <option value="budget">Sort by Budget</option>
+              <option value="status">Sort by Status</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Projects Grid -->
+      <div class="grid lg:grid-cols-2 xl:grid-cols-3 gap-8" id="projects-grid">
+        <!-- Project Card 1 -->
+        <div class="card p-8 group">
+          <div class="flex items-start justify-between mb-8">
+            <div class="flex items-center space-x-3">
+              <div class="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center">
+                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                </svg>
+              </div>
+              <span class="status-active">Active</span>
+            </div>
+            <span class="text-gray-400 text-sm font-light">Due Feb 28</span>
+          </div>
+          
+          <h3 class="text-xl font-semibold text-white mb-3 tracking-tight">Smith Wedding Photography</h3>
+          <p class="text-gray-400 mb-6 font-light">Elegant wedding photography for John & Jane Smith</p>
+          
+          <div class="space-y-4 mb-8">
+            <div class="flex justify-between items-center">
+              <span class="text-gray-400 text-sm font-light">Client</span>
+              <span class="text-white font-medium tracking-tight">John Smith</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-gray-400 text-sm font-light">Budget</span>
+              <span class="text-white font-medium tracking-tight">$25,600</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-gray-400 text-sm font-light">Progress</span>
+              <span class="text-white font-medium tracking-tight">75%</span>
+            </div>
+            <div class="w-full bg-white/10 rounded-full h-2">
+              <div class="bg-white h-2 rounded-full transition-all duration-300" style="width: 75%"></div>
+            </div>
+          </div>
+          
+          <div class="flex space-x-3">
+            <button class="btn-secondary flex-1 py-3 text-sm">Update</button>
+            <button class="btn-primary flex-1 py-3 text-sm">Details</button>
+          </div>
+        </div>
+
+        <!-- Project Card 2 -->
+        <div class="card p-8 group">
+          <div class="flex items-start justify-between mb-8">
+            <div class="flex items-center space-x-3">
+              <div class="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center">
+                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                </svg>
+              </div>
+              <span class="status-completed">Completed</span>
+            </div>
+            <span class="text-gray-400 text-sm font-light">Jan 20</span>
+          </div>
+          
+          <h3 class="text-xl font-semibold text-white mb-3 tracking-tight">Corporate Headshots</h3>
+          <p class="text-gray-400 mb-6 font-light">Professional headshots for TechCorp employees</p>
+          
+          <div class="space-y-4 mb-8">
+            <div class="flex justify-between items-center">
+              <span class="text-gray-400 text-sm font-light">Client</span>
+              <span class="text-white font-medium tracking-tight">Sarah Johnson</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-gray-400 text-sm font-light">Budget</span>
+              <span class="text-white font-medium tracking-tight">$15,400</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-gray-400 text-sm font-light">Progress</span>
+              <span class="text-white font-medium tracking-tight">100%</span>
+            </div>
+            <div class="w-full bg-white/10 rounded-full h-2">
+              <div class="bg-white h-2 rounded-full transition-all duration-300" style="width: 100%"></div>
+            </div>
+          </div>
+          
+          <div class="flex space-x-3">
+            <button class="btn-secondary flex-1 py-3 text-sm">Invoice</button>
+            <button class="btn-primary flex-1 py-3 text-sm">Details</button>
+          </div>
+        </div>
+
+        <!-- Project Card 3 -->
+        <div class="card p-8 group">
+          <div class="flex items-start justify-between mb-8">
+            <div class="flex items-center space-x-3">
+              <div class="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center">
+                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                </svg>
+              </div>
+              <span class="status-pending">Review</span>
+            </div>
+            <span class="text-gray-400 text-sm font-light">Mar 10</span>
+          </div>
+          
+          <h3 class="text-xl font-semibold text-white mb-3 tracking-tight">Family Portrait Session</h3>
+          <p class="text-gray-400 mb-6 font-light">Outdoor family photography for the Wilson family</p>
+          
+          <div class="space-y-4 mb-8">
+            <div class="flex justify-between items-center">
+              <span class="text-gray-400 text-sm font-light">Client</span>
+              <span class="text-white font-medium tracking-tight">Mike Wilson</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-gray-400 text-sm font-light">Budget</span>
+              <span class="text-white font-medium tracking-tight">$8,200</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-gray-400 text-sm font-light">Progress</span>
+              <span class="text-white font-medium tracking-tight">90%</span>
+            </div>
+            <div class="w-full bg-white/10 rounded-full h-2">
+              <div class="bg-white h-2 rounded-full transition-all duration-300" style="width: 90%"></div>
+            </div>
+          </div>
+          
+          <div class="flex space-x-3">
+            <button class="btn-secondary flex-1 py-3 text-sm">Review</button>
+            <button class="btn-primary flex-1 py-3 text-sm">Details</button>
+          </div>
+        </div>
+
+        <!-- Project Card 4 -->
+        <div class="card p-8 group">
+          <div class="flex items-start justify-between mb-8">
+            <div class="flex items-center space-x-3">
+              <div class="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center">
+                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                </svg>
+              </div>
+              <span class="status-active">Active</span>
+            </div>
+            <span class="text-gray-400 text-sm font-light">Mar 15</span>
+          </div>
+          
+          <h3 class="text-xl font-semibold text-white mb-3 tracking-tight">Product Photography</h3>
+          <p class="text-gray-400 mb-6 font-light">E-commerce product shots for fashion brand</p>
+          
+          <div class="space-y-4 mb-8">
+            <div class="flex justify-between items-center">
+              <span class="text-gray-400 text-sm font-light">Client</span>
+              <span class="text-white font-medium tracking-tight">Emma Martinez</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-gray-400 text-sm font-light">Budget</span>
+              <span class="text-white font-medium tracking-tight">$12,800</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-gray-400 text-sm font-light">Progress</span>
+              <span class="text-white font-medium tracking-tight">45%</span>
+            </div>
+            <div class="w-full bg-white/10 rounded-full h-2">
+              <div class="bg-white h-2 rounded-full transition-all duration-300" style="width: 45%"></div>
+            </div>
+          </div>
+          
+          <div class="flex space-x-3">
+            <button class="btn-secondary flex-1 py-3 text-sm">Update</button>
+            <button class="btn-primary flex-1 py-3 text-sm">Details</button>
+          </div>
+        </div>
+
+        <!-- Project Card 5 -->
+        <div class="card p-8 group">
+          <div class="flex items-start justify-between mb-8">
+            <div class="flex items-center space-x-3">
+              <div class="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center">
+                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2z" />
+                </svg>
+              </div>
+              <span class="status-pending">Pending</span>
+            </div>
+            <span class="text-gray-400 text-sm font-light">Apr 5</span>
+          </div>
+          
+          <h3 class="text-xl font-semibold text-white mb-3 tracking-tight">Conference Event</h3>
+          <p class="text-gray-400 mb-6 font-light">Annual tech conference photography coverage</p>
+          
+          <div class="space-y-4 mb-8">
+            <div class="flex justify-between items-center">
+              <span class="text-gray-400 text-sm font-light">Client</span>
+              <span class="text-white font-medium tracking-tight">TechStart Inc</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-gray-400 text-sm font-light">Budget</span>
+              <span class="text-white font-medium tracking-tight">$22,000</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-gray-400 text-sm font-light">Progress</span>
+              <span class="text-white font-medium tracking-tight">25%</span>
+            </div>
+            <div class="w-full bg-white/10 rounded-full h-2">
+              <div class="bg-white h-2 rounded-full transition-all duration-300" style="width: 25%"></div>
+            </div>
+          </div>
+          
+          <div class="flex space-x-3">
+            <button class="btn-secondary flex-1 py-3 text-sm">Plan</button>
+            <button class="btn-primary flex-1 py-3 text-sm">Details</button>
+          </div>
+        </div>
+
+        <!-- Project Card 6 -->
+        <div class="card p-8 group">
+          <div class="flex items-start justify-between mb-8">
+            <div class="flex items-center space-x-3">
+              <div class="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center">
+                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+              </div>
+              <span class="status-completed">Completed</span>
+            </div>
+            <span class="text-gray-400 text-sm font-light">Feb 12</span>
+          </div>
+          
+          <h3 class="text-xl font-semibold text-white mb-3 tracking-tight">Architecture Portfolio</h3>
+          <p class="text-gray-400 mb-6 font-light">Modern building photography for architect showcase</p>
+          
+          <div class="space-y-4 mb-8">
+            <div class="flex justify-between items-center">
+              <span class="text-gray-400 text-sm font-light">Client</span>
+              <span class="text-white font-medium tracking-tight">Robert Brown</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-gray-400 text-sm font-light">Budget</span>
+              <span class="text-white font-medium tracking-tight">$18,600</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-gray-400 text-sm font-light">Progress</span>
+              <span class="text-white font-medium tracking-tight">100%</span>
+            </div>
+            <div class="w-full bg-white/10 rounded-full h-2">
+              <div class="bg-white h-2 rounded-full transition-all duration-300" style="width: 100%"></div>
+            </div>
+          </div>
+          
+          <div class="flex space-x-3">
+            <button class="btn-secondary flex-1 py-3 text-sm">Gallery</button>
+            <button class="btn-primary flex-1 py-3 text-sm">Details</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Load More Button -->
+      <div class="text-center mt-12">
+        <button class="btn-secondary px-8 py-4">
+          Load More Projects
+        </button>
+      </div>
+    </main>
+  </div>
+
+  <!-- Add Project Modal -->
+  <div id="add-project-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm hidden z-50 flex items-center justify-center p-6">
+    <div class="card p-12 w-full max-w-2xl max-h-[90vh] overflow-y-auto">
+      <h2 class="text-2xl font-semibold text-white mb-8 tracking-tight">Create New Project</h2>
+      <form class="space-y-6">
+        <div class="grid md:grid-cols-2 gap-6">
+          <div>
+            <label class="block text-sm font-medium text-gray-300 mb-2 tracking-tight">Project Name</label>
+            <input type="text" class="input-primary" placeholder="Smith Wedding Photography" required />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-300 mb-2 tracking-tight">Client</label>
+            <select class="input-primary" required>
+              <option value="">Select a client</option>
+              <option value="john-smith">John Smith</option>
+              <option value="sarah-johnson">Sarah Johnson</option>
+              <option value="mike-wilson">Mike Wilson</option>
+              <option value="emma-martinez">Emma Martinez</option>
+            </select>
+          </div>
+        </div>
+        
+        <div>
+          <label class="block text-sm font-medium text-gray-300 mb-2 tracking-tight">Description</label>
+          <textarea class="input-primary" rows="3" placeholder="Brief description of the project scope and deliverables" required></textarea>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6">
+          <div>
+            <label class="block text-sm font-medium text-gray-300 mb-2 tracking-tight">Project Type</label>
+            <select class="input-primary" required>
+              <option value="">Select type</option>
+              <option value="wedding">Wedding Photography</option>
+              <option value="corporate">Corporate Events</option>
+              <option value="portrait">Portrait Photography</option>
+              <option value="product">Product Photography</option>
+              <option value="family">Family Photography</option>
+              <option value="event">Event Photography</option>
+              <option value="architecture">Architecture</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-300 mb-2 tracking-tight">Budget</label>
+            <input type="number" class="input-primary" placeholder="25000" required />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-300 mb-2 tracking-tight">Due Date</label>
+            <input type="date" class="input-primary" required />
+          </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-6">
+          <div>
+            <label class="block text-sm font-medium text-gray-300 mb-2 tracking-tight">Start Date</label>
+            <input type="date" class="input-primary" required />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-300 mb-2 tracking-tight">Priority</label>
+            <select class="input-primary" required>
+              <option value="">Select priority</option>
+              <option value="low">Low</option>
+              <option value="medium">Medium</option>
+              <option value="high">High</option>
+              <option value="urgent">Urgent</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium text-gray-300 mb-2 tracking-tight">Notes</label>
+          <textarea class="input-primary" rows="3" placeholder="Additional project details, requirements, or special instructions"></textarea>
+        </div>
+
+        <div class="flex space-x-4 pt-4">
+          <button type="button" onclick="closeAddProjectModal()" class="btn-secondary flex-1">Cancel</button>
+          <button type="submit" class="btn-primary flex-1">Create Project</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    function openAddProjectModal() {
+      document.getElementById('add-project-modal')?.classList.remove('hidden');
+    }
+
+    function closeAddProjectModal() {
+      document.getElementById('add-project-modal')?.classList.add('hidden');
+    }
+
+    // Close modal when clicking outside
+    document.getElementById('add-project-modal')?.addEventListener('click', (e) => {
+      if (e.target === e.currentTarget) {
+        closeAddProjectModal();
+      }
+    });
+
+    // Search and filter functionality
+    const searchInput = document.getElementById('search-input');
+    const statusFilter = document.getElementById('status-filter');
+    const typeFilter = document.getElementById('type-filter');
+    const sortFilter = document.getElementById('sort-filter');
+
+    function filterProjects() {
+      // Placeholder for project filtering logic
+      console.log('Filtering projects...');
+    }
+
+    searchInput?.addEventListener('input', filterProjects);
+    statusFilter?.addEventListener('change', filterProjects);
+    typeFilter?.addEventListener('change', filterProjects);
+    sortFilter?.addEventListener('change', filterProjects);
+  </script>
+</Layout> 

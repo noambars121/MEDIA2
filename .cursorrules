@@ -1,0 +1,282 @@
+# MediaHand - AI-Powered Business Management Platform
+# Cursor Rules for Photographers & Videographers Platform
+
+## PROJECT OVERVIEW
+You are working on MediaHand, an AI-powered business management platform for photographers and videographers. The platform provides comprehensive client management, content creation, financial tracking, scheduling, and business operations tools.
+
+## TECH STACK & ARCHITECTURE
+- **Frontend**: Astro 5.6.2 + React 18 + TypeScript
+- **Styling**: Tailwind CSS with custom design system
+- **Backend**: Supabase (Auth, Database, Storage, Real-time)
+- **UI Components**: Custom component library based on shadcn/ui patterns
+- **Database**: PostgreSQL via Supabase
+- **Deployment**: Node.js adapter for server-side rendering
+
+## AVAILABLE MCPs (Model Context Protocols)
+Always leverage these MCPs for enhanced functionality:
+
+### 1. Supabase MCP
+- Use for database operations, authentication, project management
+- Functions: execute_sql, apply_migration, list_tables, generate_typescript_types
+- Always generate TypeScript types when schema changes
+- Use migrations for DDL operations, execute_sql for queries
+
+### 2. Google Drive & Sheets MCP
+- Use for client file management and data import/export
+- Functions: listFiles, uploadFile, downloadFile, shareFile
+- Integrate with MediaHand's media management system
+
+### 3. Playwright MCP
+- Use for testing and browser automation
+- Functions: navigate, snapshot, click, type, take_screenshot
+- Essential for testing complex calendar and scheduling interfaces
+
+### 4. Web Search & Memory MCPs
+- Use web search for current AI/tech trends and integration research
+- Use memory MCP to store project decisions and patterns
+
+## CODING STANDARDS
+
+### TypeScript Rules
+- Always use strict TypeScript
+- Define proper interfaces for all data structures
+- Use Supabase-generated types for database operations
+- Prefer type-safe approaches over any types
+- Use proper generic constraints and utility types
+
+### Astro Patterns
+- Use Astro components (.astro) for pages and layouts
+- Use React components (.tsx) for interactive UI elements
+- Leverage Astro's islands architecture for performance
+- Implement proper SEO meta tags in layouts
+- Use Astro's built-in optimizations for images and assets
+
+### React Guidelines
+- Use functional components with hooks
+- Implement proper error boundaries
+- Use React.memo for performance optimization where needed
+- Follow React 18 concurrent features best practices
+- Implement proper accessibility (a11y) attributes
+
+### Supabase Integration
+- Always use TypeScript types generated from Supabase
+- Implement proper error handling for database operations
+- Use Row Level Security (RLS) policies for data protection
+- Leverage Supabase real-time features for live updates
+- Implement proper authentication state management
+
+## DESIGN SYSTEM
+
+### Color Palette
+- Primary Blue: #1e40af (primary-blue)
+- Secondary Colors: Tailwind's gray, green, red, yellow, orange scales
+- Text: gray-900 (primary), gray-600 (secondary), gray-400 (muted)
+- Backgrounds: white, gray-50, gray-100
+
+### Component Patterns
+- Use `card` class for containers with shadow and border
+- Implement `btn-primary`, `btn-secondary`, `btn-outline` button variants
+- Use `input-field` class for consistent form inputs
+- Implement `modal-overlay`, `modal-content` for modals
+- Use `card-header`, `card-content`, `card-footer` for card structure
+
+### Layout Patterns
+- Use `DashboardLayout` for authenticated pages
+- Implement responsive grid layouts (grid grid-cols-1 lg:grid-cols-3)
+- Use consistent spacing with Tailwind's space-y-6, gap-6 patterns
+- Implement proper mobile-first responsive design
+
+## FILE ORGANIZATION
+
+### Directory Structure
+```
+src/
+├── pages/                 # Astro pages (.astro)
+├── layouts/              # Astro layouts
+├── components/           # React components (.tsx)
+│   ├── ui/              # Reusable UI components
+│   └── providers/       # Context providers
+├── lib/                 # Utilities and configurations
+│   ├── supabase/       # Supabase client and types
+│   └── i18n/          # Internationalization
+├── stores/             # State management
+└── styles/             # Global styles
+```
+
+### Naming Conventions
+- Pages: kebab-case (client-management.astro)
+- Components: PascalCase (ClientCard.tsx)
+- Utilities: camelCase (formatCurrency.ts)
+- Database tables: snake_case (user_profiles)
+- CSS classes: kebab-case (btn-primary)
+
+## BUSINESS DOMAIN PATTERNS
+
+### Core Entities
+Always consider these main business entities:
+- **Users**: Photographers/videographers (with profiles, settings)
+- **Clients**: End customers (with contact info, preferences, brand guidelines)
+- **Projects**: Photography/video projects (with timelines, deliverables)
+- **Appointments**: Scheduled sessions (with calendar integration)
+- **Media**: Photos/videos (with metadata, associations)
+- **Invoices**: Financial documents (with line items, payments)
+- **Content**: AI-generated social media content
+
+### User Workflows
+Optimize for these typical user journeys:
+1. Client onboarding → Project creation → Scheduling → Execution → Delivery → Payment
+2. Content creation → AI generation → Review → Publishing → Analytics
+3. Financial tracking → Invoice generation → Payment processing → Tax reporting
+
+## FEATURE DEVELOPMENT PRIORITIES
+
+### Current Status (✅ Completed)
+1. Authentication system with Supabase
+2. Financial management (invoicing, payments, expenses)
+3. Scheduling & calendar system
+4. Basic page structure and navigation
+
+### Next Priorities
+1. AI content generation system (OpenAI integration)
+2. Enhanced client management
+3. Project management workflows
+4. Media management and processing
+
+## SECURITY & PERFORMANCE
+
+### Security Requirements
+- Implement RLS policies for all database tables
+- Validate all user inputs and sanitize data
+- Use environment variables for sensitive configurations
+- Implement proper session management
+- Follow OWASP security guidelines
+
+### Performance Optimization
+- Use Astro's static generation where possible
+- Implement proper image optimization
+- Use React.lazy for code splitting
+- Implement proper caching strategies
+- Monitor Core Web Vitals
+
+## AI INTEGRATION GUIDELINES
+
+### OpenAI Integration (Upcoming)
+- Use GPT-4 for content generation
+- Implement proper prompt engineering
+- Create client-specific content personalization
+- Handle API rate limits and errors gracefully
+- Implement content moderation and filtering
+
+### Content Generation Patterns
+- Support multiple platforms (Instagram, Facebook, LinkedIn, TikTok)
+- Generate platform-specific formatting
+- Incorporate client brand voice and guidelines
+- Provide content variations and A/B testing
+- Track content performance metrics
+
+## DATABASE SCHEMA PATTERNS
+
+### Key Tables Structure
+```sql
+-- Users (photographers/videographers)
+users: id, email, full_name, avatar_url, created_at
+
+-- Clients (end customers)
+clients: id, user_id, name, email, phone, company, brand_guidelines
+
+-- Projects (photo/video shoots)
+projects: id, user_id, client_id, title, type, status, start_date, end_date
+
+-- Appointments (scheduled sessions)
+appointments: id, user_id, client_id, project_id, start_time, end_time, status
+
+-- Media (photos/videos)
+media: id, user_id, project_id, file_url, metadata, tags
+
+-- Invoices (financial documents)
+invoices: id, user_id, client_id, project_id, amount, status, due_date
+
+-- AI Content (generated content)
+ai_content: id, user_id, client_id, platform, content, hashtags, status
+```
+
+## ERROR HANDLING PATTERNS
+
+### Frontend Error Handling
+- Use try-catch blocks for async operations
+- Implement proper loading states
+- Show user-friendly error messages
+- Log errors for debugging
+- Implement retry mechanisms where appropriate
+
+### Database Error Handling
+- Handle Supabase errors gracefully
+- Implement proper validation before database operations
+- Use transactions for multi-step operations
+- Implement proper rollback mechanisms
+
+## TESTING GUIDELINES
+
+### Using Playwright MCP
+- Test critical user flows (login, appointment booking, invoice creation)
+- Test responsive design across different viewport sizes
+- Test accessibility features and keyboard navigation
+- Implement visual regression testing for UI components
+- Test integration with external services
+
+### Testing Priorities
+1. Authentication flows
+2. Financial management features
+3. Calendar and scheduling interactions
+4. AI content generation workflows
+5. Client and project management
+
+## DEVELOPMENT WORKFLOW
+
+### MCP Usage Priorities
+1. **Always check Supabase first** for database operations
+2. **Use memory MCP** to store important decisions and patterns
+3. **Leverage web search** for current best practices and APIs
+4. **Use Playwright** for comprehensive testing
+5. **Integrate Google Drive** for client file management
+
+### Code Review Checklist
+- [ ] TypeScript types are properly defined
+- [ ] Supabase integration follows security best practices
+- [ ] UI follows design system patterns
+- [ ] Responsive design is implemented
+- [ ] Error handling is comprehensive
+- [ ] Performance optimizations are in place
+- [ ] Accessibility features are included
+
+## SPECIFIC FEATURE GUIDELINES
+
+### Financial Management
+- Always use proper currency formatting
+- Implement proper tax calculations
+- Support multiple payment methods
+- Generate PDF invoices
+- Track payment statuses accurately
+
+### Scheduling System
+- Support multiple calendar views (month, week, day)
+- Implement conflict detection
+- Send automated reminders
+- Support recurring appointments
+- Integrate with external calendars
+
+### AI Content Generation
+- Implement proper prompt templates
+- Support client brand voice customization
+- Generate platform-specific content
+- Provide content analytics
+- Implement approval workflows
+
+### Client Management
+- Store comprehensive client profiles
+- Track communication history
+- Manage brand guidelines and preferences
+- Support client portal access
+- Implement client segmentation
+
+Remember: MediaHand is designed to be the comprehensive business management solution for creative professionals. Every feature should enhance the photographer/videographer's ability to run their business efficiently while maintaining high-quality client relationships. 

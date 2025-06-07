@@ -1,0 +1,469 @@
+---
+import Layout from '@/layouts/Layout.astro';
+---
+
+<Layout title="Clients - MediaHand">
+  <div class="min-h-screen bg-black">
+    <!-- Minimal grid pattern background -->
+    <div class="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.005)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.005)_1px,transparent_1px)] bg-[size:40px_40px]"></div>
+
+    <!-- Navigation -->
+    <nav class="relative z-10 px-6 py-5 border-b border-white/5">
+      <div class="max-w-7xl mx-auto flex justify-between items-center">
+        <div class="flex items-center space-x-8">
+          <div class="flex items-center space-x-3">
+            <div class="w-8 h-8 bg-white rounded-md flex items-center justify-center">
+              <svg class="w-5 h-5 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+            </div>
+            <span class="text-lg font-medium text-white tracking-tight">MediaHand</span>
+          </div>
+          
+          <div class="hidden md:flex space-x-8">
+            <a href="/dashboard" class="nav-link">Dashboard</a>
+            <a href="/clients" class="nav-link active">Clients</a>
+            <a href="/projects" class="nav-link">Projects</a>
+            <a href="/media" class="nav-link">Media</a>
+            <a href="/analytics" class="nav-link">Analytics</a>
+          </div>
+        </div>
+        
+        <div class="flex items-center space-x-4">
+          <button class="p-2 hover:bg-white/5 rounded-lg transition-colors">
+            <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-5 5v-5z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17H4l5 5v-5z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 3H3v8h18V3z" />
+            </svg>
+          </button>
+          <button class="p-2 hover:bg-white/5 rounded-lg transition-colors">
+            <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+          </button>
+          <div class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center">
+            <span class="text-white text-sm font-medium">JP</span>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="relative z-10 max-w-7xl mx-auto px-6 py-10">
+      <!-- Page Header -->
+      <div class="flex flex-col md:flex-row md:items-center justify-between mb-12">
+        <div>
+          <h1 class="text-3xl font-semibold text-white mb-3 tracking-tight">Client Management</h1>
+          <p class="text-gray-400 font-light">Manage relationships and track client interactions</p>
+        </div>
+        <button onclick="openAddClientModal()" class="btn-primary mt-6 md:mt-0 flex items-center space-x-2">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+          </svg>
+          <span>Add Client</span>
+        </button>
+      </div>
+
+      <!-- Key Metrics -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+        <div class="card p-8">
+          <div class="flex items-center justify-between mb-6">
+            <h3 class="text-xs font-medium text-gray-400 uppercase tracking-wider">Total Clients</h3>
+            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+            </svg>
+          </div>
+          <div class="text-4xl font-semibold text-white mb-2 tracking-tight">156</div>
+          <div class="text-sm text-gray-400 font-light">+12 this month</div>
+        </div>
+
+        <div class="card p-8">
+          <div class="flex items-center justify-between mb-6">
+            <h3 class="text-xs font-medium text-gray-400 uppercase tracking-wider">Active Projects</h3>
+            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+            </svg>
+          </div>
+          <div class="text-4xl font-semibold text-white mb-2 tracking-tight">35</div>
+          <div class="text-sm text-gray-400 font-light">8 starting soon</div>
+        </div>
+
+        <div class="card p-8">
+          <div class="flex items-center justify-between mb-6">
+            <h3 class="text-xs font-medium text-gray-400 uppercase tracking-wider">Total Revenue</h3>
+            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
+            </svg>
+          </div>
+          <div class="text-4xl font-semibold text-white mb-2 tracking-tight">$152K</div>
+          <div class="text-sm text-gray-400 font-light">This year</div>
+        </div>
+
+        <div class="card p-8">
+          <div class="flex items-center justify-between mb-6">
+            <h3 class="text-xs font-medium text-gray-400 uppercase tracking-wider">Satisfaction</h3>
+            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+            </svg>
+          </div>
+          <div class="text-4xl font-semibold text-white mb-2 tracking-tight">4.9</div>
+          <div class="text-sm text-gray-400 font-light">Average rating</div>
+        </div>
+      </div>
+
+      <!-- Search and Filters -->
+      <div class="card p-8 mb-10">
+        <div class="flex flex-col lg:flex-row gap-6">
+          <div class="flex-1">
+            <div class="relative">
+              <svg class="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+              <input 
+                type="text" 
+                placeholder="Search clients by name, email, or phone..." 
+                class="input-primary pl-12"
+                id="search-input"
+              />
+            </div>
+          </div>
+          <div class="flex gap-4">
+            <select class="input-primary" id="status-filter">
+              <option value="">All Clients</option>
+              <option value="active">Active</option>
+              <option value="inactive">Inactive</option>
+              <option value="vip">VIP</option>
+            </select>
+            <select class="input-primary" id="sort-filter">
+              <option value="name">Sort by Name</option>
+              <option value="date">Sort by Date</option>
+              <option value="revenue">Sort by Revenue</option>
+              <option value="projects">Sort by Projects</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Clients Grid -->
+      <div class="grid lg:grid-cols-2 xl:grid-cols-3 gap-8" id="clients-grid">
+        <!-- Client Card 1 -->
+        <div class="card p-8 group">
+          <div class="flex items-start justify-between mb-8">
+            <div class="flex items-center space-x-4">
+              <div class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center">
+                <span class="text-white font-medium text-sm tracking-tight">JS</span>
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold text-white tracking-tight">John Smith</h3>
+                <p class="text-gray-400 text-sm font-light">Wedding Photography</p>
+              </div>
+            </div>
+            <span class="status-active">Active</span>
+          </div>
+
+          <div class="space-y-4 mb-8">
+            <div class="flex justify-between items-center">
+              <span class="text-gray-400 text-sm font-light">Active Projects</span>
+              <span class="text-white font-medium tracking-tight">3</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-gray-400 text-sm font-light">Total Revenue</span>
+              <span class="text-white font-medium tracking-tight">$25,600</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-gray-400 text-sm font-light">Last Contact</span>
+              <span class="text-gray-300 font-light text-sm">2 days ago</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-gray-400 text-sm font-light">Contact</span>
+              <span class="text-gray-300 font-light text-sm">john@example.com</span>
+            </div>
+          </div>
+
+          <div class="flex space-x-3">
+            <button class="btn-secondary flex-1 py-3 text-sm">Contact</button>
+            <button class="btn-primary flex-1 py-3 text-sm">View Details</button>
+          </div>
+        </div>
+
+        <!-- Client Card 2 -->
+        <div class="card p-8 group">
+          <div class="flex items-start justify-between mb-8">
+            <div class="flex items-center space-x-4">
+              <div class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center">
+                <span class="text-white font-medium text-sm tracking-tight">SJ</span>
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold text-white tracking-tight">Sarah Johnson</h3>
+                <p class="text-gray-400 text-sm font-light">Corporate Events</p>
+              </div>
+            </div>
+            <span class="status-active">VIP</span>
+          </div>
+
+          <div class="space-y-4 mb-8">
+            <div class="flex justify-between items-center">
+              <span class="text-gray-400 text-sm font-light">Completed Projects</span>
+              <span class="text-white font-medium tracking-tight">5</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-gray-400 text-sm font-light">Total Revenue</span>
+              <span class="text-white font-medium tracking-tight">$42,300</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-gray-400 text-sm font-light">Last Contact</span>
+              <span class="text-gray-300 font-light text-sm">1 week ago</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-gray-400 text-sm font-light">Contact</span>
+              <span class="text-gray-300 font-light text-sm">sarah@company.com</span>
+            </div>
+          </div>
+
+          <div class="flex space-x-3">
+            <button class="btn-secondary flex-1 py-3 text-sm">Contact</button>
+            <button class="btn-primary flex-1 py-3 text-sm">View Details</button>
+          </div>
+        </div>
+
+        <!-- Client Card 3 -->
+        <div class="card p-8 group">
+          <div class="flex items-start justify-between mb-8">
+            <div class="flex items-center space-x-4">
+              <div class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center">
+                <span class="text-white font-medium text-sm tracking-tight">MW</span>
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold text-white tracking-tight">Mike Wilson</h3>
+                <p class="text-gray-400 text-sm font-light">Family Portraits</p>
+              </div>
+            </div>
+            <span class="status-pending">Pending</span>
+          </div>
+
+          <div class="space-y-4 mb-8">
+            <div class="flex justify-between items-center">
+              <span class="text-gray-400 text-sm font-light">Active Projects</span>
+              <span class="text-white font-medium tracking-tight">1</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-gray-400 text-sm font-light">Total Revenue</span>
+              <span class="text-white font-medium tracking-tight">$8,400</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-gray-400 text-sm font-light">Last Contact</span>
+              <span class="text-gray-300 font-light text-sm">3 days ago</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-gray-400 text-sm font-light">Contact</span>
+              <span class="text-gray-300 font-light text-sm">mike@email.com</span>
+            </div>
+          </div>
+
+          <div class="flex space-x-3">
+            <button class="btn-secondary flex-1 py-3 text-sm">Contact</button>
+            <button class="btn-primary flex-1 py-3 text-sm">View Details</button>
+          </div>
+        </div>
+
+        <!-- Client Card 4 -->
+        <div class="card p-8 group">
+          <div class="flex items-start justify-between mb-8">
+            <div class="flex items-center space-x-4">
+              <div class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center">
+                <span class="text-white font-medium text-sm tracking-tight">EM</span>
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold text-white tracking-tight">Emma Martinez</h3>
+                <p class="text-gray-400 text-sm font-light">Product Photography</p>
+              </div>
+            </div>
+            <span class="status-active">Active</span>
+          </div>
+
+          <div class="space-y-4 mb-8">
+            <div class="flex justify-between items-center">
+              <span class="text-gray-400 text-sm font-light">Active Projects</span>
+              <span class="text-white font-medium tracking-tight">2</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-gray-400 text-sm font-light">Total Revenue</span>
+              <span class="text-white font-medium tracking-tight">$18,200</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-gray-400 text-sm font-light">Last Contact</span>
+              <span class="text-gray-300 font-light text-sm">Yesterday</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-gray-400 text-sm font-light">Contact</span>
+              <span class="text-gray-300 font-light text-sm">emma@studio.com</span>
+            </div>
+          </div>
+
+          <div class="flex space-x-3">
+            <button class="btn-secondary flex-1 py-3 text-sm">Contact</button>
+            <button class="btn-primary flex-1 py-3 text-sm">View Details</button>
+          </div>
+        </div>
+
+        <!-- Client Card 5 -->
+        <div class="card p-8 group">
+          <div class="flex items-start justify-between mb-8">
+            <div class="flex items-center space-x-4">
+              <div class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center">
+                <span class="text-white font-medium text-sm tracking-tight">RB</span>
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold text-white tracking-tight">Robert Brown</h3>
+                <p class="text-gray-400 text-sm font-light">Architecture Photography</p>
+              </div>
+            </div>
+            <span class="status-inactive">Inactive</span>
+          </div>
+
+          <div class="space-y-4 mb-8">
+            <div class="flex justify-between items-center">
+              <span class="text-gray-400 text-sm font-light">Completed Projects</span>
+              <span class="text-white font-medium tracking-tight">4</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-gray-400 text-sm font-light">Total Revenue</span>
+              <span class="text-white font-medium tracking-tight">$31,800</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-gray-400 text-sm font-light">Last Contact</span>
+              <span class="text-gray-300 font-light text-sm">2 months ago</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-gray-400 text-sm font-light">Contact</span>
+              <span class="text-gray-300 font-light text-sm">robert@arch.com</span>
+            </div>
+          </div>
+
+          <div class="flex space-x-3">
+            <button class="btn-secondary flex-1 py-3 text-sm">Contact</button>
+            <button class="btn-primary flex-1 py-3 text-sm">View Details</button>
+          </div>
+        </div>
+
+        <!-- Client Card 6 -->
+        <div class="card p-8 group">
+          <div class="flex items-start justify-between mb-8">
+            <div class="flex items-center space-x-4">
+              <div class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center">
+                <span class="text-white font-medium text-sm tracking-tight">LD</span>
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold text-white tracking-tight">Lisa Davis</h3>
+                <p class="text-gray-400 text-sm font-light">Fashion Photography</p>
+              </div>
+            </div>
+            <span class="status-active">VIP</span>
+          </div>
+
+          <div class="space-y-4 mb-8">
+            <div class="flex justify-between items-center">
+              <span class="text-gray-400 text-sm font-light">Active Projects</span>
+              <span class="text-white font-medium tracking-tight">4</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-gray-400 text-sm font-light">Total Revenue</span>
+              <span class="text-white font-medium tracking-tight">$56,700</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-gray-400 text-sm font-light">Last Contact</span>
+              <span class="text-gray-300 font-light text-sm">Today</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-gray-400 text-sm font-light">Contact</span>
+              <span class="text-gray-300 font-light text-sm">lisa@fashion.com</span>
+            </div>
+          </div>
+
+          <div class="flex space-x-3">
+            <button class="btn-secondary flex-1 py-3 text-sm">Contact</button>
+            <button class="btn-primary flex-1 py-3 text-sm">View Details</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Load More Button -->
+      <div class="text-center mt-12">
+        <button class="btn-secondary px-8 py-4">
+          Load More Clients
+        </button>
+      </div>
+    </main>
+  </div>
+
+  <!-- Add Client Modal (placeholder) -->
+  <div id="add-client-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm hidden z-50 flex items-center justify-center p-6">
+    <div class="card p-12 w-full max-w-md">
+      <h2 class="text-2xl font-semibold text-white mb-8 tracking-tight">Add New Client</h2>
+      <form class="space-y-6">
+        <div>
+          <label class="block text-sm font-medium text-gray-300 mb-2 tracking-tight">Full Name</label>
+          <input type="text" class="input-primary" placeholder="John Smith" required />
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-300 mb-2 tracking-tight">Email</label>
+          <input type="email" class="input-primary" placeholder="john@example.com" required />
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-300 mb-2 tracking-tight">Phone</label>
+          <input type="tel" class="input-primary" placeholder="+1 (555) 123-4567" />
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-300 mb-2 tracking-tight">Project Type</label>
+          <select class="input-primary" required>
+            <option value="">Select project type</option>
+            <option value="wedding">Wedding Photography</option>
+            <option value="corporate">Corporate Events</option>
+            <option value="portrait">Portrait Photography</option>
+            <option value="product">Product Photography</option>
+            <option value="family">Family Photography</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div class="flex space-x-4 pt-4">
+          <button type="button" onclick="closeAddClientModal()" class="btn-secondary flex-1">Cancel</button>
+          <button type="submit" class="btn-primary flex-1">Add Client</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    function openAddClientModal() {
+      document.getElementById('add-client-modal')?.classList.remove('hidden');
+    }
+
+    function closeAddClientModal() {
+      document.getElementById('add-client-modal')?.classList.add('hidden');
+    }
+
+    // Close modal when clicking outside
+    document.getElementById('add-client-modal')?.addEventListener('click', (e) => {
+      if (e.target === e.currentTarget) {
+        closeAddClientModal();
+      }
+    });
+
+    // Simple search functionality
+    const searchInput = document.getElementById('search-input');
+    const statusFilter = document.getElementById('status-filter');
+    const sortFilter = document.getElementById('sort-filter');
+
+    function filterClients() {
+      // Placeholder for client filtering logic
+      console.log('Filtering clients...');
+    }
+
+    searchInput?.addEventListener('input', filterClients);
+    statusFilter?.addEventListener('change', filterClients);
+    sortFilter?.addEventListener('change', filterClients);
+  </script>
+</Layout> 

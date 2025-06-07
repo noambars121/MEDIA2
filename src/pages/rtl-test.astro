@@ -1,0 +1,28 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import { Button } from '@/components/ui/Button';
+---
+
+<Layout title="RTL Test | MediaHand">
+  <div class="min-h-screen flex flex-col items-center py-12">
+    <h1 class="text-3xl font-bold mb-6">RTL & Logical Properties Test</h1>
+    <p class="mb-4 text-gray-600">דף זה בודק את תמיכת RTL ו-logical properties של Tailwind. כל הרכיבים אמורים להיראות תקינים ב-RTL.</p>
+    <div class="w-full max-w-lg space-y-6">
+      <div class="border-s-4 border-rtltest p-s-8 m-s-8 bg-gray-50 rounded">
+        <div class="mb-2">border-s-4, p-s-8, m-s-8 (RTL: border-right, padding-right, margin-right)</div>
+        <Button>כפתור לדוגמה</Button>
+      </div>
+      <div class="flex flex-row-reverse gap-s-4 bg-gray-100 p-4 rounded">
+        <div class="bg-primary-blue text-white px-4 py-2 rounded">פריט 1</div>
+        <div class="bg-emerald text-white px-4 py-2 rounded">פריט 2</div>
+        <div class="bg-amber text-white px-4 py-2 rounded">פריט 3</div>
+      </div>
+      <div class="text-sm text-gray-500 mt-8">
+        <strong>הערה למפתחים:</strong> <br />
+        - כל ה-layout וה-spacing כאן משתמשים ב-logical properties של Tailwind (border-s-*, p-s-*, gap-s-*, וכו').<br />
+        - אם משהו לא מיושר נכון ב-RTL, בדקו שאתם לא משתמשים ב-left/right אלא ב-start/end.<br />
+        - ניתן להוסיף את המחלקה <code>border-s-4 border-rtltest</code> לכל אלמנט כדי לבדוק את כיוון ה-border.
+      </div>
+    </div>
+  </div>
+</Layout> 
