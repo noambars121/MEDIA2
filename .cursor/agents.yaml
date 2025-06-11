@@ -1,0 +1,18 @@
+# MediaHand AI Agents Configuration
+# Defines specialized AI agents for different aspects of the codebase
+
+agents:
+  frontend-dev:
+    root: "apps/frontend"
+    test: "npm run test:ui"
+    description: "Builds Astro+React UI, Tailwind styling"
+    
+  backend-dev:
+    root: "apps/backend"
+    test: "npm run test:api"
+    description: "Owns API routes, Prisma schema, Supabase policies"
+    
+  qa-bot:
+    root: "."
+    test: "npm test && npx playwright test"
+    description: "Writes Jest/Playwright tests, maintains BUGLOG" 
