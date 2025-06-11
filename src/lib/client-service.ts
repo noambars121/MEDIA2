@@ -1,118 +1,156 @@
 import { supabase } from './supabase';
-import type { Client, TablesInsert, TablesUpdate } from './database.types';
+import type { Database } from './database.types';
+
+type Client = Database['public']['Tables']['clients']['Row'];
+type ClientInsert = Database['public']['Tables']['clients']['Insert'];
+type ClientUpdate = Database['public']['Tables']['clients']['Update'];
 
 export class ClientService {
   /**
    * Get all clients for a user
    */
-  static async getAllClients(userId: string): Promise<Client[]> {
-    const { data, error } = await supabase
-      .from('clients')
-      .select('*')
-      .eq('user_id', userId)
-      .order('created_at', { ascending: false });
+  async getAllClients() {
+    try {
+      const { data, error } = await supabase
+        .from('clients')
+        .select('*')
+        .order('updated_at', { ascending: false });
 
-    if (error) {
-      throw new Error(`Failed to fetch clients: ${error.message}`);
+      if (error) throw error;
+      return data || [];
+    } catch (error) {
+      console.error('Error fetching clients:', error);
+      throw error;
     }
-
-    return data || [];
   }
 
   /**
    * Get a single client by ID
    */
-  static async getClient(clientId: string): Promise<Client | null> {
-    const { data, error } = await supabase
-      .from('clients')
-      .select('*')
-      .eq('id', clientId)
-      .single();
+  async getClientById(id: string) {
+    try {
+      const { data, error } = await supabase
+        .from('clients')
+        .select('*')
+        .eq('id', id)
+        .single();
 
-    if (error) {
-      if (error.code === 'PGRST116') {
-        return null; // No rows returned
-      }
-      throw new Error(`Failed to fetch client: ${error.message}`);
+      if (error) throw error;
+      return data;
+    } catch (error) {
+      console.error('Error fetching client:', error);
+      throw error;
     }
-
-    return data;
   }
 
   /**
    * Create a new client
    */
-  static async createClient(clientData: TablesInsert<'clients'>): Promise<Client> {
-    const { data, error } = await supabase
-      .from('clients')
-      .insert(clientData)
-      .select()
-      .single();
+  async createClient(clientData: Omit<ClientInsert, 'id' | 'user_id' | 'created_at' | 'updated_at'>) {
+    try {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user) throw new Error('User not authenticated');
 
-    if (error) {
-      throw new Error(`Failed to create client: ${error.message}`);
+      const { data, error } = await supabase
+        .from('clients')
+        .insert({
+          ...clientData,
+          user_id: user.id
+        })
+        .select()
+        .single();
+
+      if (error) throw error;
+      return data;
+    } catch (error) {
+      console.error('Error creating client:', error);
+      throw error;
     }
-
-    return data;
   }
 
   /**
    * Update an existing client
    */
-  static async updateClient(
-    clientId: string,
-    updates: TablesUpdate<'clients'>
-  ): Promise<Client> {
-    const { data, error } = await supabase
-      .from('clients')
-      .update(updates)
-      .eq('id', clientId)
-      .select()
-      .single();
+  async updateClient(id: string, updates: ClientUpdate) {
+    try {
+      const { data, error } = await supabase
+        .from('clients')
+        .update(updates)
+        .eq('id', id)
+        .select()
+        .single();
 
-    if (error) {
-      throw new Error(`Failed to update client: ${error.message}`);
+      if (error) throw error;
+      return data;
+    } catch (error) {
+      console.error('Error updating client:', error);
+      throw error;
     }
-
-    return data;
   }
 
   /**
    * Delete a client
    */
-  static async deleteClient(clientId: string): Promise<void> {
-    const { error } = await supabase
-      .from('clients')
-      .delete()
-      .eq('id', clientId);
+  async deleteClient(id: string) {
+    try {
+      const { error } = await supabase
+        .from('clients')
+        .delete()
+        .eq('id', id);
 
-    if (error) {
-      throw new Error(`Failed to delete client: ${error.message}`);
+      if (error) throw error;
+      return true;
+    } catch (error) {
+      console.error('Error deleting client:', error);
+      throw error;
     }
   }
 
   /**
    * Search clients by name or business name
    */
-  static async searchClients(userId: string, searchTerm: string): Promise<Client[]> {
-    const { data, error } = await supabase
-      .from('clients')
-      .select('*')
-      .eq('user_id', userId)
-      .or(`name.ilike.%${searchTerm}%,business_name.ilike.%${searchTerm}%`)
-      .order('created_at', { ascending: false });
+  async searchClients(searchTerm: string, filters: {
+    status?: string;
+    priority?: number;
+    industry?: string;
+  } = {}) {
+    try {
+      let query = supabase
+        .from('clients')
+        .select('*');
 
-    if (error) {
-      throw new Error(`Failed to search clients: ${error.message}`);
+      // Add search functionality
+      if (searchTerm) {
+        query = query.or(`name.ilike.%${searchTerm}%,email.ilike.%${searchTerm}%,company.ilike.%${searchTerm}%,phone.ilike.%${searchTerm}%`);
+      }
+
+      // Add filters
+      if (filters.status) {
+        query = query.eq('client_status', filters.status);
+      }
+      if (filters.priority) {
+        query = query.eq('priority_level', filters.priority);
+      }
+      if (filters.industry) {
+        query = query.eq('industry', filters.industry);
+      }
+
+      query = query.order('updated_at', { ascending: false });
+
+      const { data, error } = await query;
+
+      if (error) throw error;
+      return data || [];
+    } catch (error) {
+      console.error('Error searching clients:', error);
+      throw error;
     }
-
-    return data || [];
   }
 
   /**
    * Get clients by business type
    */
-  static async getClientsByType(userId: string, businessType: string): Promise<Client[]> {
+  async getClientsByType(userId: string, businessType: string): Promise<Client[]> {
     const { data, error } = await supabase
       .from('clients')
       .select('*')
@@ -130,30 +168,29 @@ export class ClientService {
   /**
    * Get client statistics for a user
    */
-  static async getClientStats(userId: string) {
-    const { data, error } = await supabase
-      .from('clients')
-      .select('status, business_type')
-      .eq('user_id', userId);
+  async getClientStats() {
+    try {
+      const { data: clients, error } = await supabase
+        .from('clients')
+        .select('client_status, priority_level, lifetime_value');
 
-    if (error) {
-      throw new Error(`Failed to fetch client statistics: ${error.message}`);
+      if (error) throw error;
+
+      const stats = {
+        total: clients?.length || 0,
+        active: clients?.filter(c => c.client_status === 'active' || c.client_status === 'vip').length || 0,
+        vip: clients?.filter(c => c.client_status === 'vip').length || 0,
+        prospects: clients?.filter(c => c.client_status === 'prospect').length || 0,
+        inactive: clients?.filter(c => c.client_status === 'inactive').length || 0,
+        totalLifetimeValue: clients?.reduce((sum, c) => sum + (c.lifetime_value || 0), 0) || 0
+      };
+
+      return stats;
+    } catch (error) {
+      console.error('Error getting client stats:', error);
+      throw error;
     }
-
-    const stats = {
-      total: data.length,
-      active: data.filter(c => c.status === 'active').length,
-      inactive: data.filter(c => c.status === 'inactive').length,
-      byType: {} as Record<string, number>
-    };
-
-    // Group by business type
-    data.forEach(client => {
-      if (client.business_type) {
-        stats.byType[client.business_type] = (stats.byType[client.business_type] || 0) + 1;
-      }
-    });
-
-    return stats;
   }
-} 
+}
+
+export const clientService = new ClientService(); 
