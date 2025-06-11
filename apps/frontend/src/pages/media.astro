@@ -1,0 +1,422 @@
+---
+import Layout from '@/layouts/Layout.astro';
+---
+
+<Layout title="Media Gallery - MediaHand">
+  <div class="min-h-screen bg-black">
+    <!-- Minimal grid pattern background -->
+    <div class="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.005)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.005)_1px,transparent_1px)] bg-[size:40px_40px]"></div>
+
+    <!-- Navigation -->
+    <nav class="relative z-10 px-6 py-5 border-b border-white/5">
+      <div class="max-w-7xl mx-auto flex justify-between items-center">
+        <div class="flex items-center space-x-8">
+          <div class="flex items-center space-x-3">
+            <div class="w-8 h-8 bg-white rounded-md flex items-center justify-center">
+              <svg class="w-5 h-5 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+            </div>
+            <span class="text-lg font-medium text-white tracking-tight">MediaHand</span>
+          </div>
+          
+          <div class="hidden md:flex space-x-8">
+            <a href="/dashboard" class="nav-link">Dashboard</a>
+            <a href="/clients" class="nav-link">Clients</a>
+            <a href="/projects" class="nav-link">Projects</a>
+            <a href="/media" class="nav-link active">Media</a>
+            <a href="/ai-content" class="nav-link">Generate Content</a>
+            <a href="/scheduling" class="nav-link">Scheduling</a>
+            <a href="/analytics" class="nav-link">Analytics</a>
+          </div>
+        </div>
+        
+        <div class="flex items-center space-x-4">
+          <button class="p-2 hover:bg-white/5 rounded-lg transition-colors">
+            <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-5 5v-5z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17H4l5 5v-5z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 3H3v8h18V3z" />
+            </svg>
+          </button>
+          <button class="p-2 hover:bg-white/5 rounded-lg transition-colors">
+            <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+          </button>
+          <div class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center">
+            <span class="text-white text-sm font-medium">JP</span>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="relative z-10 max-w-7xl mx-auto px-6 py-10">
+      <!-- Page Header -->
+      <div class="flex flex-col md:flex-row md:items-center justify-between mb-12">
+        <div>
+          <h1 class="text-3xl font-semibold text-white mb-3 tracking-tight">Media Gallery</h1>
+          <p class="text-gray-400 font-light">Organize and showcase your professional work</p>
+        </div>
+        <div class="flex space-x-4 mt-6 md:mt-0">
+          <button onclick="openUploadModal()" class="btn-secondary flex items-center space-x-2">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+            </svg>
+            <span>Upload</span>
+          </button>
+          <button onclick="openCollectionModal()" class="btn-primary flex items-center space-x-2">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+            </svg>
+            <span>New Collection</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Stats Overview -->
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 mb-12">
+        <div class="card p-6">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xs font-medium text-gray-400 uppercase tracking-wider">Photos</h3>
+            <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+          </div>
+          <div class="text-3xl font-semibold text-white mb-1 tracking-tight">2,847</div>
+          <div class="text-xs text-gray-400 font-light">Total images</div>
+        </div>
+
+        <div class="card p-6">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xs font-medium text-gray-400 uppercase tracking-wider">Videos</h3>
+            <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+            </svg>
+          </div>
+          <div class="text-3xl font-semibold text-white mb-1 tracking-tight">156</div>
+          <div class="text-xs text-gray-400 font-light">Video files</div>
+        </div>
+
+        <div class="card p-6">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xs font-medium text-gray-400 uppercase tracking-wider">Collections</h3>
+            <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+            </svg>
+          </div>
+          <div class="text-3xl font-semibold text-white mb-1 tracking-tight">24</div>
+          <div class="text-xs text-gray-400 font-light">Organized sets</div>
+        </div>
+
+        <div class="card p-6">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xs font-medium text-gray-400 uppercase tracking-wider">Storage</h3>
+            <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4" />
+            </svg>
+          </div>
+          <div class="text-3xl font-semibold text-white mb-1 tracking-tight">85.2GB</div>
+          <div class="text-xs text-gray-400 font-light">Space used</div>
+        </div>
+
+        <div class="card p-6">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xs font-medium text-gray-400 uppercase tracking-wider">Downloads</h3>
+            <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+            </svg>
+          </div>
+          <div class="text-3xl font-semibold text-white mb-1 tracking-tight">1,245</div>
+          <div class="text-xs text-gray-400 font-light">Client downloads</div>
+        </div>
+      </div>
+
+      <!-- Filters and View Options -->
+      <div class="card p-8 mb-10">
+        <div class="flex flex-col lg:flex-row gap-6 items-center justify-between">
+          <div class="flex flex-col sm:flex-row gap-4 flex-1">
+            <div class="relative flex-1">
+              <svg class="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+              <input 
+                type="text" 
+                placeholder="Search photos, videos, collections..." 
+                class="input-primary pl-12"
+                id="search-input"
+              />
+            </div>
+            <select class="input-primary" id="project-filter">
+              <option value="">All Projects</option>
+              <option value="wedding">Wedding Photography</option>
+              <option value="corporate">Corporate Events</option>
+              <option value="portrait">Portrait Sessions</option>
+              <option value="family">Family Photography</option>
+            </select>
+            <select class="input-primary" id="type-filter">
+              <option value="">All Types</option>
+              <option value="photos">Photos</option>
+              <option value="videos">Videos</option>
+              <option value="raw">RAW Files</option>
+              <option value="collections">Collections</option>
+            </select>
+          </div>
+          
+          <div class="flex items-center space-x-4">
+            <div class="flex bg-white/5 rounded-lg p-1">
+              <button id="grid-view" onclick="setView('grid')" class="p-2 rounded-md bg-white/10 text-white transition-all">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+                </svg>
+              </button>
+              <button id="list-view" onclick="setView('list')" class="p-2 rounded-md text-gray-400 hover:text-white hover:bg-white/5 transition-all">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16" />
+                </svg>
+              </button>
+            </div>
+            <select class="input-primary" id="sort-filter">
+              <option value="newest">Newest First</option>
+              <option value="oldest">Oldest First</option>
+              <option value="size">File Size</option>
+              <option value="name">Name A-Z</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Media Grid -->
+      <div id="media-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+        <!-- Photo Item 1 -->
+        <div class="group relative card rounded-lg overflow-hidden hover:scale-[1.02] transition-all duration-200 cursor-pointer">
+          <div class="aspect-square bg-white/5 flex items-center justify-center">
+            <svg class="w-12 h-12 text-white/30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+          </div>
+          <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+            <div class="flex space-x-2">
+              <button class="p-2 bg-white/20 rounded-md hover:bg-white/30 transition-colors">
+                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                </svg>
+              </button>
+              <button class="p-2 bg-white/20 rounded-md hover:bg-white/30 transition-colors">
+                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                </svg>
+              </button>
+              <button class="p-2 bg-white/20 rounded-md hover:bg-white/30 transition-colors">
+                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.367 2.684 3 3 0 00-5.367-2.684z" />
+                </svg>
+              </button>
+            </div>
+          </div>
+          <div class="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/80 to-transparent">
+            <p class="text-white text-sm font-medium tracking-tight">wedding_001.jpg</p>
+            <p class="text-gray-300 text-xs font-light">2.4 MB • Yesterday</p>
+          </div>
+        </div>
+
+        <!-- Video Item -->
+        <div class="group relative card rounded-lg overflow-hidden hover:scale-[1.02] transition-all duration-200 cursor-pointer">
+          <div class="aspect-square bg-white/5 flex items-center justify-center">
+            <svg class="w-12 h-12 text-white/30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+            </svg>
+          </div>
+          <div class="absolute top-3 right-3">
+            <span class="bg-white text-black text-xs px-2 py-1 rounded-md font-medium">4K</span>
+          </div>
+          <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+            <button class="p-3 bg-white/20 rounded-full hover:bg-white/30 transition-colors">
+              <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M8 5v14l11-7z"/>
+              </svg>
+            </button>
+          </div>
+          <div class="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/80 to-transparent">
+            <p class="text-white text-sm font-medium tracking-tight">ceremony_highlight.mp4</p>
+            <p class="text-gray-300 text-xs font-light">128 MB • 2 days ago</p>
+          </div>
+        </div>
+
+        <!-- More placeholder items -->
+        <div class="group relative card rounded-lg overflow-hidden hover:scale-[1.02] transition-all duration-200 cursor-pointer">
+          <div class="aspect-square bg-white/5 flex items-center justify-center">
+            <svg class="w-12 h-12 text-white/30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+          </div>
+          <div class="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/80 to-transparent">
+            <p class="text-white text-sm font-medium tracking-tight">portrait_session_01.jpg</p>
+            <p class="text-gray-300 text-xs font-light">3.1 MB • 3 days ago</p>
+          </div>
+        </div>
+
+        <div class="group relative card rounded-lg overflow-hidden hover:scale-[1.02] transition-all duration-200 cursor-pointer">
+          <div class="aspect-square bg-white/5 flex items-center justify-center">
+            <svg class="w-12 h-12 text-white/30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+          </div>
+          <div class="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/80 to-transparent">
+            <p class="text-white text-sm font-medium tracking-tight">corporate_event_12.jpg</p>
+            <p class="text-gray-300 text-xs font-light">1.8 MB • 1 week ago</p>
+          </div>
+        </div>
+
+        <div class="group relative card rounded-lg overflow-hidden hover:scale-[1.02] transition-all duration-200 cursor-pointer">
+          <div class="aspect-square bg-white/5 flex items-center justify-center">
+            <svg class="w-12 h-12 text-white/30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+          </div>
+          <div class="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/80 to-transparent">
+            <p class="text-white text-sm font-medium tracking-tight">family_outdoor_05.jpg</p>
+            <p class="text-gray-300 text-xs font-light">2.9 MB • 1 week ago</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Load More -->
+      <div class="text-center mt-12">
+        <button class="btn-secondary">Load More Media</button>
+      </div>
+    </main>
+
+    <!-- Upload Modal -->
+    <div id="uploadModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 hidden">
+      <div class="glass-effect rounded-3xl p-8 max-w-2xl w-full mx-4">
+        <div class="flex justify-between items-center mb-8">
+          <h3 class="text-2xl font-bold text-white font-display">Upload Media</h3>
+          <button onclick="closeUploadModal()" class="text-white/60 hover:text-white transition-colors">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+        
+        <div class="border-2 border-dashed border-white/30 rounded-2xl p-12 text-center hover:border-purple-400 transition-colors">
+          <svg class="w-16 h-16 text-white/50 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+          </svg>
+          <h4 class="text-xl font-bold text-white mb-2">Drop files here</h4>
+          <p class="text-white/70 mb-6">or click to browse your computer</p>
+          <button class="btn-primary">Choose Files</button>
+          <p class="text-white/50 text-sm mt-4">Supports: JPG, PNG, MP4, MOV up to 100MB</p>
+        </div>
+        
+        <div class="mt-8">
+          <label class="block text-white/80 text-sm font-medium mb-2">Add to Project (Optional)</label>
+          <select class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-purple-400">
+            <option>Select Project</option>
+            <option>Smith Wedding Photography</option>
+            <option>Corporate Headshots</option>
+            <option>Family Portrait Session</option>
+          </select>
+        </div>
+        
+        <div class="flex space-x-4 mt-8">
+          <button onclick="closeUploadModal()" class="flex-1 bg-white/10 hover:bg-white/20 text-white rounded-xl py-3 px-6 transition-colors">
+            Cancel
+          </button>
+          <button class="flex-1 btn-primary">
+            Start Upload
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Collection Modal -->
+    <div id="collectionModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 hidden">
+      <div class="glass-effect rounded-3xl p-8 max-w-lg w-full mx-4">
+        <div class="flex justify-between items-center mb-8">
+          <h3 class="text-2xl font-bold text-white font-display">New Collection</h3>
+          <button onclick="closeCollectionModal()" class="text-white/60 hover:text-white transition-colors">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+        
+        <form class="space-y-6">
+          <div>
+            <label class="block text-white/80 text-sm font-medium mb-2">Collection Name</label>
+            <input type="text" class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-purple-400" placeholder="Summer Wedding 2024">
+          </div>
+          
+          <div>
+            <label class="block text-white/80 text-sm font-medium mb-2">Description</label>
+            <textarea class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-purple-400 h-24" placeholder="Describe this collection..."></textarea>
+          </div>
+          
+          <div>
+            <label class="block text-white/80 text-sm font-medium mb-2">Privacy</label>
+            <select class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-purple-400">
+              <option>Private</option>
+              <option>Shared with Client</option>
+              <option>Public Portfolio</option>
+            </select>
+          </div>
+          
+          <div class="flex space-x-4">
+            <button type="button" onclick="closeCollectionModal()" class="flex-1 bg-white/10 hover:bg-white/20 text-white rounded-xl py-3 px-6 transition-colors">
+              Cancel
+            </button>
+            <button type="submit" class="flex-1 btn-primary">
+              Create Collection
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function logout() {
+      document.cookie = 'sb-access-token=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+      document.cookie = 'sb-refresh-token=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+      window.location.href = '/';
+    }
+
+    function setView(viewType) {
+      const gridBtn = document.getElementById('gridView');
+      const listBtn = document.getElementById('listView');
+      
+      if (viewType === 'grid') {
+        gridBtn.classList.add('bg-white/20');
+        gridBtn.classList.remove('text-white/70', 'hover:text-white', 'hover:bg-white/10');
+        listBtn.classList.remove('bg-white/20');
+        listBtn.classList.add('text-white/70', 'hover:text-white', 'hover:bg-white/10');
+      } else {
+        listBtn.classList.add('bg-white/20');
+        listBtn.classList.remove('text-white/70', 'hover:text-white', 'hover:bg-white/10');
+        gridBtn.classList.remove('bg-white/20');
+        gridBtn.classList.add('text-white/70', 'hover:text-white', 'hover:bg-white/10');
+      }
+    }
+
+    function openUploadModal() {
+      document.getElementById('uploadModal').classList.remove('hidden');
+    }
+
+    function closeUploadModal() {
+      document.getElementById('uploadModal').classList.add('hidden');
+    }
+
+    function openCollectionModal() {
+      document.getElementById('collectionModal').classList.remove('hidden');
+    }
+
+    function closeCollectionModal() {
+      document.getElementById('collectionModal').classList.add('hidden');
+    }
+  </script>
+</Layout> 

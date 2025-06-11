@@ -1,0 +1,594 @@
+---
+import Layout from '@/layouts/Layout.astro';
+---
+
+<Layout title="Financial Management - MediaHand">
+  <div class="min-h-screen bg-black">
+    <!-- Minimal grid pattern background -->
+    <div class="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.005)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.005)_1px,transparent_1px)] bg-[size:40px_40px]"></div>
+
+    <!-- Navigation -->
+    <nav class="relative z-10 px-6 py-5 border-b border-white/5">
+      <div class="max-w-7xl mx-auto flex justify-between items-center">
+        <div class="flex items-center space-x-8">
+          <div class="flex items-center space-x-3">
+            <div class="w-8 h-8 bg-white rounded-md flex items-center justify-center">
+              <svg class="w-5 h-5 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+            </div>
+            <span class="text-lg font-medium text-white tracking-tight">MediaHand</span>
+          </div>
+          
+          <div class="hidden md:flex space-x-8">
+            <a href="/dashboard" class="nav-link">Dashboard</a>
+            <a href="/clients" class="nav-link">Clients</a>
+            <a href="/projects" class="nav-link">Projects</a>
+            <a href="/media" class="nav-link">Media</a>
+            <a href="/ai-content" class="nav-link">Generate Content</a>
+            <a href="/scheduling" class="nav-link">Scheduling</a>
+            <a href="/financial" class="nav-link active">Financial</a>
+            <a href="/analytics" class="nav-link">Analytics</a>
+          </div>
+        </div>
+        
+        <div class="flex items-center space-x-4">
+          <button class="p-2 hover:bg-white/5 rounded-lg transition-colors">
+            <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-5 5v-5z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17H4l5 5v-5z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 3H3v8h18V3z" />
+            </svg>
+          </button>
+          <button class="p-2 hover:bg-white/5 rounded-lg transition-colors">
+            <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+          </button>
+          <div class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center">
+            <span class="text-white text-sm font-medium">JP</span>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="relative z-10 max-w-7xl mx-auto px-6 py-10">
+      <!-- Financial Management Dashboard -->
+      <div class="space-y-6">
+    <!-- Header -->
+    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+      <div>
+        <h1 class="text-3xl font-bold text-primary-blue">Financial Management</h1>
+        <p class="text-muted-foreground">Manage invoices, track payments, and monitor your business finances</p>
+      </div>
+      <div class="flex flex-wrap gap-3">
+        <button class="btn-primary" onclick="createInvoice()">
+          <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+          </svg>
+          Create Invoice
+        </button>
+        <button class="btn-secondary" onclick="exportReport()">
+          <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+          </svg>
+          Export Report
+        </button>
+      </div>
+    </div>
+
+    <!-- Financial Summary Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div class="card p-6">
+        <div class="flex items-center justify-between">
+          <div>
+            <p class="text-sm font-medium text-muted-foreground">Total Revenue</p>
+            <p class="text-2xl font-bold text-primary-blue">$24,580</p>
+            <p class="text-xs text-green-600">+12.5% from last month</p>
+          </div>
+          <div class="p-3 bg-green-100 rounded-full">
+            <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"></path>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="card p-6">
+        <div class="flex items-center justify-between">
+          <div>
+            <p class="text-sm font-medium text-muted-foreground">Outstanding</p>
+            <p class="text-2xl font-bold text-orange-600">$8,420</p>
+            <p class="text-xs text-orange-600">5 pending invoices</p>
+          </div>
+          <div class="p-3 bg-orange-100 rounded-full">
+            <svg class="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="card p-6">
+        <div class="flex items-center justify-between">
+          <div>
+            <p class="text-sm font-medium text-muted-foreground">Monthly Expenses</p>
+            <p class="text-2xl font-bold text-red-600">$3,240</p>
+            <p class="text-xs text-red-600">+8.2% from last month</p>
+          </div>
+          <div class="p-3 bg-red-100 rounded-full">
+            <svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="card p-6">
+        <div class="flex items-center justify-between">
+          <div>
+            <p class="text-sm font-medium text-muted-foreground">Net Profit</p>
+            <p class="text-2xl font-bold text-primary-blue">$21,340</p>
+            <p class="text-xs text-green-600">+15.3% from last month</p>
+          </div>
+          <div class="p-3 bg-blue-100 rounded-full">
+            <svg class="w-6 h-6 text-primary-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Content Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <!-- Recent Invoices -->
+      <div class="lg:col-span-2">
+        <div class="card">
+          <div class="card-header flex flex-row items-center justify-between">
+            <h3 class="card-title">Recent Invoices</h3>
+            <button class="text-sm text-primary-blue hover:underline" onclick="viewAllInvoices()">
+              View All
+            </button>
+          </div>
+          <div class="card-content">
+            <div class="overflow-x-auto">
+              <table class="w-full">
+                <thead>
+                  <tr class="border-b">
+                    <th class="text-left p-3 font-medium text-muted-foreground">Invoice #</th>
+                    <th class="text-left p-3 font-medium text-muted-foreground">Client</th>
+                    <th class="text-left p-3 font-medium text-muted-foreground">Amount</th>
+                    <th class="text-left p-3 font-medium text-muted-foreground">Status</th>
+                    <th class="text-left p-3 font-medium text-muted-foreground">Due Date</th>
+                    <th class="text-left p-3 font-medium text-muted-foreground">Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="invoicesTable">
+                  <tr class="border-b hover:bg-gray-50">
+                    <td class="p-3 font-medium">#INV-2024-001</td>
+                    <td class="p-3">Sarah & Mike Johnson</td>
+                    <td class="p-3">$2,500</td>
+                    <td class="p-3">
+                      <span class="px-2 py-1 text-xs font-medium bg-green-100 text-green-800 rounded-full">Paid</span>
+                    </td>
+                    <td class="p-3">Jan 15, 2024</td>
+                    <td class="p-3">
+                      <button class="text-primary-blue hover:underline text-sm">View</button>
+                    </td>
+                  </tr>
+                  <tr class="border-b hover:bg-gray-50">
+                    <td class="p-3 font-medium">#INV-2024-002</td>
+                    <td class="p-3">TechCorp Inc.</td>
+                    <td class="p-3">$4,200</td>
+                    <td class="p-3">
+                      <span class="px-2 py-1 text-xs font-medium bg-orange-100 text-orange-800 rounded-full">Pending</span>
+                    </td>
+                    <td class="p-3">Jan 20, 2024</td>
+                    <td class="p-3">
+                      <button class="text-primary-blue hover:underline text-sm">View</button>
+                    </td>
+                  </tr>
+                  <tr class="border-b hover:bg-gray-50">
+                    <td class="p-3 font-medium">#INV-2024-003</td>
+                    <td class="p-3">Creative Studio</td>
+                    <td class="p-3">$1,800</td>
+                    <td class="p-3">
+                      <span class="px-2 py-1 text-xs font-medium bg-red-100 text-red-800 rounded-full">Overdue</span>
+                    </td>
+                    <td class="p-3">Jan 10, 2024</td>
+                    <td class="p-3">
+                      <button class="text-primary-blue hover:underline text-sm">View</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Actions & Revenue Chart -->
+      <div class="space-y-6">
+        <!-- Quick Actions -->
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Quick Actions</h3>
+          </div>
+          <div class="card-content space-y-3">
+            <button class="w-full btn-outline text-left flex items-center gap-3" onclick="createQuickInvoice()">
+              <svg class="w-5 h-5 text-primary-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+              </svg>
+              Quick Invoice
+            </button>
+            <button class="w-full btn-outline text-left flex items-center gap-3" onclick="recordPayment()">
+              <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"></path>
+              </svg>
+              Record Payment
+            </button>
+            <button class="w-full btn-outline text-left flex items-center gap-3" onclick="addExpense()">
+              <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+              </svg>
+              Add Expense
+            </button>
+            <button class="w-full btn-outline text-left flex items-center gap-3" onclick="sendReminder()">
+              <svg class="w-5 h-5 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.732-.833-2.5 0L4.268 18.5c-.77.833.192 2.5 1.732 2.5z"></path>
+              </svg>
+              Send Reminder
+            </button>
+          </div>
+        </div>
+
+        <!-- Monthly Revenue Chart -->
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Revenue Trend</h3>
+          </div>
+          <div class="card-content">
+            <div class="h-64 flex items-end justify-between space-x-2">
+              <div class="flex flex-col items-center space-y-2">
+                <div class="w-8 bg-primary-blue rounded-t" style="height: 60%"></div>
+                <span class="text-xs text-muted-foreground">Jan</span>
+              </div>
+              <div class="flex flex-col items-center space-y-2">
+                <div class="w-8 bg-primary-blue rounded-t" style="height: 75%"></div>
+                <span class="text-xs text-muted-foreground">Feb</span>
+              </div>
+              <div class="flex flex-col items-center space-y-2">
+                <div class="w-8 bg-primary-blue rounded-t" style="height: 45%"></div>
+                <span class="text-xs text-muted-foreground">Mar</span>
+              </div>
+              <div class="flex flex-col items-center space-y-2">
+                <div class="w-8 bg-primary-blue rounded-t" style="height: 85%"></div>
+                <span class="text-xs text-muted-foreground">Apr</span>
+              </div>
+              <div class="flex flex-col items-center space-y-2">
+                <div class="w-8 bg-primary-blue rounded-t" style="height: 70%"></div>
+                <span class="text-xs text-muted-foreground">May</span>
+              </div>
+              <div class="flex flex-col items-center space-y-2">
+                <div class="w-8 bg-primary-blue rounded-t" style="height: 90%"></div>
+                <span class="text-xs text-muted-foreground">Jun</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Expenses and Tax Summary -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <!-- Recent Expenses -->
+      <div class="card">
+        <div class="card-header flex flex-row items-center justify-between">
+          <h3 class="card-title">Recent Expenses</h3>
+          <button class="text-sm text-primary-blue hover:underline" onclick="viewAllExpenses()">
+            View All
+          </button>
+        </div>
+        <div class="card-content">
+          <div class="space-y-4">
+            <div class="flex items-center justify-between p-3 border rounded-lg">
+              <div class="flex items-center gap-3">
+                <div class="p-2 bg-red-100 rounded-lg">
+                  <svg class="w-4 h-4 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                  </svg>
+                </div>
+                <div>
+                  <p class="font-medium">Camera Equipment</p>
+                  <p class="text-sm text-muted-foreground">Jan 15, 2024</p>
+                </div>
+              </div>
+              <span class="font-semibold text-red-600">-$1,200</span>
+            </div>
+            <div class="flex items-center justify-between p-3 border rounded-lg">
+              <div class="flex items-center gap-3">
+                <div class="p-2 bg-red-100 rounded-lg">
+                  <svg class="w-4 h-4 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                  </svg>
+                </div>
+                <div>
+                  <p class="font-medium">Travel Expenses</p>
+                  <p class="text-sm text-muted-foreground">Jan 12, 2024</p>
+                </div>
+              </div>
+              <span class="font-semibold text-red-600">-$450</span>
+            </div>
+            <div class="flex items-center justify-between p-3 border rounded-lg">
+              <div class="flex items-center gap-3">
+                <div class="p-2 bg-red-100 rounded-lg">
+                  <svg class="w-4 h-4 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+                  </svg>
+                </div>
+                <div>
+                  <p class="font-medium">Software Subscription</p>
+                  <p class="text-sm text-muted-foreground">Jan 10, 2024</p>
+                </div>
+              </div>
+              <span class="font-semibold text-red-600">-$299</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tax Summary -->
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Tax Summary</h3>
+        </div>
+        <div class="card-content space-y-4">
+          <div class="flex justify-between items-center p-3 bg-blue-50 rounded-lg">
+            <span class="font-medium">Q1 2024 Estimated Tax</span>
+            <span class="font-semibold text-primary-blue">$2,150</span>
+          </div>
+          <div class="flex justify-between items-center p-3 border rounded-lg">
+            <span>Total Deductible Expenses</span>
+            <span class="font-semibold">$3,240</span>
+          </div>
+          <div class="flex justify-between items-center p-3 border rounded-lg">
+            <span>Tax Savings</span>
+            <span class="font-semibold text-green-600">$810</span>
+          </div>
+          <button class="w-full btn-primary mt-4" onclick="generateTaxReport()">
+            Generate Tax Report
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modals -->
+  <div id="invoiceModal" class="modal-overlay hidden">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">Create New Invoice</h3>
+        <button class="modal-close" onclick="closeModal('invoiceModal')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="invoiceForm" class="space-y-4">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-sm font-medium mb-2">Client</label>
+              <select class="input-field w-full" required>
+                <option value="">Select Client</option>
+                <option value="client1">Sarah & Mike Johnson</option>
+                <option value="client2">TechCorp Inc.</option>
+                <option value="client3">Creative Studio</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-sm font-medium mb-2">Due Date</label>
+              <input type="date" class="input-field w-full" required>
+            </div>
+          </div>
+          
+          <div>
+            <label class="block text-sm font-medium mb-2">Description</label>
+            <textarea class="input-field w-full" rows="3" placeholder="Wedding photography services..."></textarea>
+          </div>
+
+          <div class="space-y-3">
+            <label class="block text-sm font-medium">Line Items</label>
+            <div class="border rounded-lg p-4 space-y-3">
+              <div class="grid grid-cols-4 gap-2">
+                <input type="text" placeholder="Item" class="input-field">
+                <input type="number" placeholder="Qty" class="input-field">
+                <input type="number" placeholder="Rate" class="input-field">
+                <div class="flex items-center">
+                  <span class="text-sm font-medium">$0.00</span>
+                </div>
+              </div>
+              <button type="button" class="text-primary-blue text-sm hover:underline">+ Add Line Item</button>
+            </div>
+          </div>
+
+          <div class="flex justify-between items-center pt-4 border-t">
+            <span class="text-lg font-semibold">Total: $0.00</span>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-secondary" onclick="closeModal('invoiceModal')">Cancel</button>
+        <button type="submit" form="invoiceForm" class="btn-primary">Create Invoice</button>
+      </div>
+        </div>
+      </main>
+    </div>
+  </Layout> 
+
+<script>
+  // Financial Management JavaScript
+  function createInvoice() {
+    document.getElementById('invoiceModal').classList.remove('hidden');
+  }
+
+  function createQuickInvoice() {
+    createInvoice();
+  }
+
+  function recordPayment() {
+    // Implementation for recording payment
+    alert('Payment recording feature will be implemented');
+  }
+
+  function addExpense() {
+    // Implementation for adding expense
+    alert('Add expense feature will be implemented');
+  }
+
+  function sendReminder() {
+    // Implementation for sending payment reminder
+    alert('Payment reminder feature will be implemented');
+  }
+
+  function exportReport() {
+    // Implementation for exporting financial report
+    alert('Export report feature will be implemented');
+  }
+
+  function generateTaxReport() {
+    // Implementation for generating tax report
+    alert('Tax report generation feature will be implemented');
+  }
+
+  function viewAllInvoices() {
+    // Navigate to invoices page
+    window.location.href = '/invoices';
+  }
+
+  function viewAllExpenses() {
+    // Navigate to expenses page
+    window.location.href = '/expenses';
+  }
+
+  function closeModal(modalId) {
+    document.getElementById(modalId).classList.add('hidden');
+  }
+
+  // Close modal when clicking outside
+  document.addEventListener('click', function(event) {
+    if (event.target.classList.contains('modal-overlay')) {
+      event.target.classList.add('hidden');
+    }
+  });
+
+  // Load financial data
+  async function loadFinancialData() {
+    try {
+      // Simulate loading data
+      console.log('Loading financial data...');
+      
+      // This would connect to Supabase to fetch real data
+      // const { data: invoices } = await supabase
+      //   .from('invoices')
+      //   .select('*')
+      //   .order('created_at', { ascending: false });
+      
+    } catch (error) {
+      console.error('Error loading financial data:', error);
+    }
+  }
+
+  // Initialize on page load
+  document.addEventListener('DOMContentLoaded', function() {
+    loadFinancialData();
+  });
+</script>
+
+<style>
+  /* Navigation styles */
+  .nav-link {
+    @apply text-gray-400 hover:text-white transition-colors duration-200 font-medium tracking-tight;
+  }
+  
+  .nav-link.active {
+    @apply text-white;
+  }
+
+  /* Card styles */
+  .card {
+    @apply bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl;
+  }
+
+  /* Button styles */
+  .btn-primary {
+    @apply bg-white text-black hover:bg-gray-100 font-medium tracking-tight transition-colors duration-200 px-6 py-3 rounded-lg;
+  }
+
+  .btn-secondary {
+    @apply bg-white/10 text-white hover:bg-white/20 font-medium tracking-tight transition-colors duration-200 px-6 py-3 rounded-lg border border-white/20;
+  }
+
+  .btn-outline {
+    @apply bg-transparent border border-white/20 text-white hover:bg-white/10 font-medium tracking-tight transition-colors duration-200 px-4 py-2 rounded-lg;
+  }
+
+  /* Modal Styles */
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+
+  .modal-content {
+    background: white;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 600px;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  .modal-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #1f2937;
+  }
+
+  .modal-close {
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #6b7280;
+    border: none;
+    background: none;
+  }
+
+  .modal-body {
+    padding: 1.5rem;
+  }
+
+  .modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.75rem;
+    padding: 1.5rem;
+    border-top: 1px solid #e5e7eb;
+  }
+</style>
+</rewritten_file>

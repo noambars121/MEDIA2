@@ -1,0 +1,364 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Pure monochrome palette - no color whatsoever */
+  --white: #ffffff;
+  --gray-25: #fdfdfd;
+  --gray-50: #fafafa;
+  --gray-100: #f5f5f5;
+  --gray-200: #e5e5e5;
+  --gray-300: #d4d4d4;
+  --gray-400: #a3a3a3;
+  --gray-500: #737373;
+  --gray-600: #525252;
+  --gray-700: #404040;
+  --gray-800: #262626;
+  --gray-850: #1c1c1c;
+  --gray-900: #171717;
+  --gray-950: #0a0a0a;
+  --black: #000000;
+  
+  /* Backgrounds */
+  --bg-primary: #000000;
+  --bg-secondary: #0a0a0a;
+  --bg-tertiary: #171717;
+  --bg-quaternary: #262626;
+  
+  /* Borders - extremely subtle */
+  --border-primary: rgba(255, 255, 255, 0.05);
+  --border-secondary: rgba(255, 255, 255, 0.08);
+  --border-tertiary: rgba(255, 255, 255, 0.12);
+  
+  /* Shadows - minimal and dark */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.8);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.8);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.9);
+}
+
+/* Base styles with premium typography */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  background: var(--bg-primary);
+  color: var(--white);
+  line-height: 1.5;
+  font-weight: 400;
+  font-size: 15px;
+  letter-spacing: -0.01em;
+}
+
+/* Premium typography hierarchy */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+h1 { font-size: 2.5rem; font-weight: 700; }
+h2 { font-size: 2rem; font-weight: 600; }
+h3 { font-size: 1.5rem; font-weight: 600; }
+h4 { font-size: 1.25rem; font-weight: 600; }
+h5 { font-size: 1.125rem; font-weight: 500; }
+h6 { font-size: 1rem; font-weight: 500; }
+
+.text-sm { font-size: 0.875rem; letter-spacing: -0.005em; }
+.text-xs { font-size: 0.75rem; letter-spacing: 0; }
+
+/* Pure monochrome gradient - very subtle */
+.gradient-text {
+  background: linear-gradient(135deg, #ffffff 0%, #d4d4d4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* High-end buttons */
+.btn-primary {
+  @apply inline-flex items-center justify-center px-6 py-3 text-sm font-medium transition-all duration-200 ease-out;
+  background: var(--white);
+  color: var(--black);
+  border: 1px solid var(--white);
+  border-radius: 6px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.btn-primary:hover {
+  background: var(--gray-100);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 25px rgba(255, 255, 255, 0.15);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.btn-secondary {
+  @apply inline-flex items-center justify-center px-6 py-3 text-sm font-medium transition-all duration-200 ease-out;
+  background: transparent;
+  color: var(--white);
+  border: 1px solid var(--border-tertiary);
+  border-radius: 6px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: var(--border-tertiary);
+  transform: translateY(-1px);
+}
+
+/* Premium card style */
+.card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-primary);
+  border-radius: 8px;
+  transition: all 0.3s ease-out;
+  backdrop-filter: blur(1px);
+}
+
+.card:hover {
+  background: var(--bg-tertiary);
+  border-color: var(--border-secondary);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Premium form inputs */
+.input-primary {
+  @apply w-full px-4 py-3 text-white placeholder-gray-500 transition-all duration-200;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-primary);
+  border-radius: 6px;
+  font-weight: 400;
+  font-size: 15px;
+  letter-spacing: -0.01em;
+}
+
+.input-primary:focus {
+  outline: none;
+  border-color: var(--border-tertiary);
+  background: var(--bg-tertiary);
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.05);
+}
+
+/* Navigation */
+.nav-link {
+  @apply transition-all duration-200 font-medium;
+  color: var(--gray-400);
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: -0.01em;
+}
+
+.nav-link:hover {
+  color: var(--white);
+}
+
+.nav-link.active {
+  color: var(--white);
+  position: relative;
+}
+
+.nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--white);
+}
+
+/* Premium status indicators */
+.status-active {
+  @apply inline-flex items-center px-3 py-1 text-xs font-medium rounded-full;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--white);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  font-weight: 500;
+  letter-spacing: -0.005em;
+}
+
+.status-pending {
+  @apply inline-flex items-center px-3 py-1 text-xs font-medium rounded-full;
+  background: rgba(163, 163, 163, 0.08);
+  color: var(--gray-400);
+  border: 1px solid rgba(163, 163, 163, 0.15);
+  font-weight: 500;
+  letter-spacing: -0.005em;
+}
+
+.status-inactive {
+  @apply inline-flex items-center px-3 py-1 text-xs font-medium rounded-full;
+  background: rgba(115, 115, 115, 0.08);
+  color: var(--gray-500);
+  border: 1px solid rgba(115, 115, 115, 0.15);
+  font-weight: 500;
+  letter-spacing: -0.005em;
+}
+
+/* Refined animations */
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Minimal background pattern */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.005) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(255, 255, 255, 0.005) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Ultra-clean scrollbar */
+::-webkit-scrollbar {
+  width: 3px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--gray-700);
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gray-600);
+}
+
+/* Selection */
+::selection {
+  background: rgba(255, 255, 255, 0.15);
+  color: var(--white);
+}
+
+/* Focus styles */
+.focus-ring:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.08);
+}
+
+/* Premium table styles */
+.table {
+  @apply w-full text-sm text-left;
+}
+
+.table th {
+  @apply px-6 py-4 text-xs font-medium uppercase tracking-wider;
+  color: var(--gray-400);
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-primary);
+  font-weight: 500;
+  letter-spacing: 0.05em;
+}
+
+.table td {
+  @apply px-6 py-4;
+  color: var(--gray-300);
+  border-bottom: 1px solid var(--border-primary);
+  font-weight: 400;
+}
+
+.table tbody tr:hover {
+  background: var(--bg-secondary);
+}
+
+/* Clean progress bars */
+.progress-bar {
+  width: 100%;
+  background: var(--bg-quaternary);
+  border-radius: 2px;
+  height: 2px;
+}
+
+.progress-fill {
+  background: var(--white);
+  height: 2px;
+  border-radius: 2px;
+  transition: width 0.4s ease-out;
+}
+
+/* Premium badges */
+.badge {
+  @apply inline-flex items-center px-3 py-1 text-xs font-medium rounded-md;
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--gray-300);
+  border: 1px solid var(--border-primary);
+  font-weight: 500;
+  letter-spacing: -0.005em;
+}
+
+/* Premium layout utilities */
+.container-fluid {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.section-padding {
+  padding: 6rem 0;
+}
+
+/* Text utilities */
+.text-muted {
+  color: var(--gray-400);
+}
+
+.text-subtle {
+  color: var(--gray-500);
+}
+
+.text-primary {
+  color: var(--white);
+}
+
+/* Spacing utilities */
+.space-y-xl > * + * {
+  margin-top: 3rem;
+}
+
+.space-y-lg > * + * {
+  margin-top: 2rem;
+}
+
+.space-y-md > * + * {
+  margin-top: 1.5rem;
+} 
